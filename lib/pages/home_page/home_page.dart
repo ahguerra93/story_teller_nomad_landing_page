@@ -40,6 +40,9 @@ class _HomePageState extends State<HomePage> {
           Positioned.fill(
             child: GestureCardDeck(
               initialIndex: index,
+              slideCurve: Curves.easeInOutCubic,
+              scaleCurve: Curves.easeInOutCubic,
+              animationDuration: Duration(milliseconds: 800),
               pages: [
                 LandingSection(),
                 ServicesSection(),

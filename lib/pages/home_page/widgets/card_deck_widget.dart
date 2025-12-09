@@ -4,12 +4,18 @@ class CardDeckWidget extends StatefulWidget {
   final List<Widget> pages;
   final int currentIndex;
   final Function(int) onPageChanged;
+  final Curve slideCurve;
+  final Curve scaleCurve;
+  final Duration animationDuration;
 
   const CardDeckWidget({
     super.key,
     required this.pages,
     required this.currentIndex,
     required this.onPageChanged,
+    this.slideCurve = Curves.easeInOutCubic,
+    this.scaleCurve = Curves.easeOutQuart,
+    this.animationDuration = const Duration(milliseconds: 600),
   });
 
   @override
@@ -28,7 +34,7 @@ class _CardDeckWidgetState extends State<CardDeckWidget> with TickerProviderStat
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: Duration(milliseconds: 600),
+      duration: widget.animationDuration,
       vsync: this,
     );
     _updateSlideAnimation();
@@ -41,16 +47,16 @@ class _CardDeckWidgetState extends State<CardDeckWidget> with TickerProviderStat
       end: _slideUp ? Offset(0, -1) : Offset(0, 1), // Slide up or down
     ).animate(CurvedAnimation(
       parent: _animationController,
-      curve: Curves.easeInOut,
+      curve: widget.slideCurve,
     ));
 
-    // Scale animation for incoming page (1.25 → 1.0)
+    // Scale animation for incoming page (1.15 → 1.0)
     _scaleAnimation = Tween<double>(
-      begin: 1.25,
+      begin: 1.15,
       end: 1.0,
     ).animate(CurvedAnimation(
       parent: _animationController,
-      curve: Curves.easeOut,
+      curve: widget.scaleCurve,
     ));
   }
 

@@ -8,6 +8,9 @@ class GestureCardDeck extends StatefulWidget {
   final Function(int)? onPageChanged;
   final double sensitivity; // How much drag needed to trigger page change
   final GlobalKey<_GestureCardDeckState>? controller; // Optional controller for external access
+  final Curve slideCurve;
+  final Curve scaleCurve;
+  final Duration animationDuration;
 
   const GestureCardDeck({
     super.key,
@@ -16,6 +19,9 @@ class GestureCardDeck extends StatefulWidget {
     this.onPageChanged,
     this.sensitivity = 100.0, // pixels
     this.controller,
+    this.slideCurve = Curves.easeInOutCubic,
+    this.scaleCurve = Curves.easeOutQuart,
+    this.animationDuration = const Duration(milliseconds: 600),
   });
 
   @override
@@ -147,6 +153,9 @@ class _GestureCardDeckState extends State<GestureCardDeck> {
         child: CardDeckWidget(
           pages: widget.pages,
           currentIndex: _currentIndex,
+          slideCurve: widget.slideCurve,
+          scaleCurve: widget.scaleCurve,
+          animationDuration: widget.animationDuration,
           onPageChanged: (index) {
             setState(() {
               _currentIndex = index;
