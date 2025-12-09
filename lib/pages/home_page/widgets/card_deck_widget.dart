@@ -19,6 +19,7 @@ class CardDeckWidget extends StatefulWidget {
 class _CardDeckWidgetState extends State<CardDeckWidget> with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<Offset> _slideAnimation;
+  late Animation<double> _scaleAnimation;
   int _previousIndex = 0;
   bool _isAnimating = false;
   bool _slideUp = true; // Direction of slide animation
@@ -42,6 +43,15 @@ class _CardDeckWidgetState extends State<CardDeckWidget> with TickerProviderStat
       parent: _animationController,
       curve: Curves.easeInOut,
     ));
+
+    // Scale animation for incoming page (1.25 → 1.0)
+    _scaleAnimation = Tween<double>(
+      begin: 1.25,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeOut,
+    ));
   }
 
   @override
@@ -54,7 +64,14 @@ class _CardDeckWidgetState extends State<CardDeckWidget> with TickerProviderStat
 
   void _animateToPage() {
     // Determine slide direction based on index change
-    _slideUp = widget.currentIndex > _previousIndex;
+    // Special cases for wraparound animations
+    if (_previousIndex == widget.pages.length - 1 && widget.currentIndex == 0) {
+      _slideUp = true; // Force upward slide for last→first wraparound
+    } else if (_previousIndex == 0 && widget.currentIndex == widget.pages.length - 1) {
+      _slideUp = false; // Force downward slide for first→last wraparound
+    } else {
+      _slideUp = widget.currentIndex > _previousIndex;
+    }
     _updateSlideAnimation();
 
     setState(() {
@@ -74,8 +91,17 @@ class _CardDeckWidgetState extends State<CardDeckWidget> with TickerProviderStat
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Bottom card (new page - always visible)
-        widget.pages[widget.currentIndex],
+        // Bottom card (new page) - with scaling animation during transition
+        AnimatedBuilder(
+          animation: _animationController,
+          builder: (context, child) {
+            double scale = _isAnimating ? _scaleAnimation.value : 1.0;
+            return Transform.scale(
+              scale: scale,
+              child: widget.pages[widget.currentIndex],
+            );
+          },
+        ),
 
         // Top card (old page - slides away during animation)
         if (_isAnimating)

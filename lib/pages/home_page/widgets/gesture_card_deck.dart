@@ -59,11 +59,19 @@ class _GestureCardDeckState extends State<GestureCardDeck> {
       int newIndex;
 
       if (dragDistance < 0) {
-        // Dragging up - go to next page (higher index)
-        newIndex = (_currentIndex + 1).clamp(0, widget.pages.length - 1);
+        // Dragging up - go to next page or wrap to first
+        if (_currentIndex == widget.pages.length - 1) {
+          newIndex = 0; // Wrap to first page
+        } else {
+          newIndex = _currentIndex + 1;
+        }
       } else {
-        // Dragging down - go to previous page (lower index)
-        newIndex = (_currentIndex - 1).clamp(0, widget.pages.length - 1);
+        // Dragging down - go to previous page or wrap to last
+        if (_currentIndex == 0) {
+          newIndex = widget.pages.length - 1; // Wrap to last page
+        } else {
+          newIndex = _currentIndex - 1;
+        }
       }
 
       if (newIndex != _currentIndex) {
@@ -90,11 +98,19 @@ class _GestureCardDeckState extends State<GestureCardDeck> {
         int newIndex;
 
         if (scrollDelta > 0) {
-          // Scrolling down - go to next page
-          newIndex = (_currentIndex + 1).clamp(0, widget.pages.length - 1);
+          // Scrolling down - go to next page or wrap to first
+          if (_currentIndex == widget.pages.length - 1) {
+            newIndex = 0; // Wrap to first page
+          } else {
+            newIndex = _currentIndex + 1;
+          }
         } else {
-          // Scrolling up - go to previous page
-          newIndex = (_currentIndex - 1).clamp(0, widget.pages.length - 1);
+          // Scrolling up - go to previous page or wrap to last
+          if (_currentIndex == 0) {
+            newIndex = widget.pages.length - 1; // Wrap to last page
+          } else {
+            newIndex = _currentIndex - 1;
+          }
         }
 
         if (newIndex != _currentIndex) {
