@@ -4,7 +4,7 @@ import 'card_deck_widget.dart';
 
 class GestureCardDeck extends StatefulWidget {
   final List<Widget> pages;
-  final int initialIndex;
+  final int currentIndex; // Changed from initialIndex to currentIndex for better control
   final Function(int)? onPageChanged;
   final double sensitivity; // How much drag needed to trigger page change
   final GlobalKey<_GestureCardDeckState>? controller; // Optional controller for external access
@@ -15,7 +15,7 @@ class GestureCardDeck extends StatefulWidget {
   const GestureCardDeck({
     super.key,
     required this.pages,
-    this.initialIndex = 0,
+    this.currentIndex = 0,
     this.onPageChanged,
     this.sensitivity = 100.0, // pixels
     this.controller,
@@ -38,7 +38,18 @@ class _GestureCardDeckState extends State<GestureCardDeck> {
   @override
   void initState() {
     super.initState();
-    _currentIndex = widget.initialIndex;
+    _currentIndex = widget.currentIndex;
+  }
+
+  @override
+  void didUpdateWidget(GestureCardDeck oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Sync internal state when external index changes (e.g., from dot navigation)
+    if (oldWidget.currentIndex != widget.currentIndex && widget.currentIndex != _currentIndex) {
+      setState(() {
+        _currentIndex = widget.currentIndex;
+      });
+    }
   }
 
   void _onPanStart(DragStartDetails details) {

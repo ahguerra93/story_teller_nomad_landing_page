@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/card_deck_widget.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/gesture_card_deck.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/landing_section.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/page_dot_widget.dart';
@@ -39,7 +38,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Positioned.fill(
             child: GestureCardDeck(
-              initialIndex: index,
+              currentIndex: index,
               slideCurve: Curves.easeInOutCubic,
               scaleCurve: Curves.easeInOutCubic,
               animationDuration: Duration(milliseconds: 800),
