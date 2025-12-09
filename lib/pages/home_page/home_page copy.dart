@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/gesture_card_deck.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/landing_section.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/page_dot_widget.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/portfolio_section.dart';
@@ -37,32 +36,16 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: GestureCardDeck(
-              currentIndex: index,
-              slideCurve: Curves.easeInOutCubic,
-              scaleCurve: Curves.easeInOutCubic,
-              animationDuration: Duration(milliseconds: 800),
-              pages: [
+            child: PageView(
+              pageSnapping: true,
+              scrollDirection: Axis.vertical,
+              controller: _controller,
+              children: [
                 LandingSection(),
                 ServicesSection(),
                 PortfolioSection(),
               ],
-              onPageChanged: (newIndex) {
-                setState(() {
-                  index = newIndex;
-                });
-              },
             ),
-            // PageView(
-            //   pageSnapping: true,
-            //   scrollDirection: Axis.vertical,
-            //   controller: _controller,
-            //   children: [
-            //     LandingSection(),
-            //     ServicesSection(),
-            //     PortfolioSection(),
-            //   ],
-            // ),
           ),
           Align(
               alignment: Alignment.centerRight,
@@ -76,18 +59,30 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     PageDotWidget(
                       // key: Key('nav-dot-0'),
-                      onTap: () => setState(() => index = 0),
+                      onTap: () => _controller.animateToPage(
+                        0,
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.linear,
+                      ),
                       active: index == 0,
                     ),
                     SizedBox(height: 20),
                     PageDotWidget(
                       // key: Key('nav-dot-1'),
-                      onTap: () => setState(() => index = 1),
+                      onTap: () => _controller.animateToPage(
+                        1,
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.linear,
+                      ),
                       active: index == 1,
                     ),
                     SizedBox(height: 20),
                     PageDotWidget(
-                      onTap: () => setState(() => index = 2),
+                      onTap: () => _controller.animateToPage(
+                        2,
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.linear,
+                      ),
                       active: index == 2,
                     ),
                   ],
