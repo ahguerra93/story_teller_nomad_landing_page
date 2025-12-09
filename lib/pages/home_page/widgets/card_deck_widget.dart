@@ -21,6 +21,7 @@ class _CardDeckWidgetState extends State<CardDeckWidget> with TickerProviderStat
   late Animation<Offset> _slideAnimation;
   int _previousIndex = 0;
   bool _isAnimating = false;
+  bool _slideUp = true; // Direction of slide animation
 
   @override
   void initState() {
@@ -29,15 +30,18 @@ class _CardDeckWidgetState extends State<CardDeckWidget> with TickerProviderStat
       duration: Duration(milliseconds: 600),
       vsync: this,
     );
+    _updateSlideAnimation();
+    _previousIndex = widget.currentIndex;
+  }
+
+  void _updateSlideAnimation() {
     _slideAnimation = Tween<Offset>(
       begin: Offset.zero,
-      end: Offset(0, -1), // Slide up
+      end: _slideUp ? Offset(0, -1) : Offset(0, 1), // Slide up or down
     ).animate(CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
     ));
-
-    _previousIndex = widget.currentIndex;
   }
 
   @override
@@ -49,6 +53,10 @@ class _CardDeckWidgetState extends State<CardDeckWidget> with TickerProviderStat
   }
 
   void _animateToPage() {
+    // Determine slide direction based on index change
+    _slideUp = widget.currentIndex > _previousIndex;
+    _updateSlideAnimation();
+
     setState(() {
       _isAnimating = true;
     });
