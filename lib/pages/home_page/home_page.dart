@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/card_deck_widget.dart';
+import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/gesture_card_deck.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/landing_section.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/page_dot_widget.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/portfolio_section.dart';
@@ -37,14 +38,18 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: CardDeckWidget(
-              currentIndex: index,
+            child: GestureCardDeck(
+              initialIndex: index,
               pages: [
                 LandingSection(),
                 ServicesSection(),
                 PortfolioSection(),
               ],
-              onPageChanged: (newIndex) {},
+              onPageChanged: (newIndex) {
+                setState(() {
+                  index = newIndex;
+                });
+              },
             ),
             // PageView(
             //   pageSnapping: true,
