@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:story_teller_nomad_landing_page/common/services/Gallery_service.dart';
 
 class GalleryPage extends StatefulWidget {
+  const GalleryPage({super.key});
+
   @override
   _ImageGalleryState createState() => _ImageGalleryState();
 }

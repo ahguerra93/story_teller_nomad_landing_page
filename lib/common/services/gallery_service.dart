@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_functions/cloud_functions.dart';
 
 class GalleryService {
@@ -7,17 +9,17 @@ class GalleryService {
     try {
       final callable = _functions.httpsCallable('getGallery');
       final response = await callable();
-      print(response.data.toString());
+      log(response.data.toString());
       List<String> result = [];
       (response.data as Map).forEach(
         (key, value) {
-          print('Key: $key, Value: $value');
+          log('Key: $key, Value: $value');
           result.add(value.toString());
         },
       );
       return result;
     } catch (e) {
-      print('Error fetching images: $e');
+      log('Error fetching images: $e');
       return [];
     }
   }

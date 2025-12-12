@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 ThemeData buildTheme(Brightness? brightness) {
   var baseTheme = ThemeData(
-    brightness: brightness,
-    colorSchemeSeed: Colors.blueGrey, // Automa
-    useMaterial3: true,
-  );
+      brightness: brightness,
+      colorSchemeSeed: Colors.black, // Automa
+      useMaterial3: true,
+      fontFamily: 'Uniform Rounded');
 
-  return baseTheme.copyWith(
-    textTheme: GoogleFonts.montserratTextTheme(baseTheme.textTheme),
-  );
+  return baseTheme;
+  // return baseTheme.copyWith(textTheme: GoogleFonts.montserratTextTheme(baseTheme.textTheme));
 }
