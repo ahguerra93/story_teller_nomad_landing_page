@@ -43,7 +43,9 @@ class _HomePageState extends State<HomePage> {
               scaleCurve: Curves.easeInOutCubic,
               animationDuration: Duration(milliseconds: 800),
               pages: [
-                LandingSection(),
+                LandingSection(
+                  key: Key('Landind-section'),
+                ),
                 ServicesSection(),
                 PortfolioSection(),
               ],
