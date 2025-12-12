@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/service_container.dart';
+import 'package:story_teller_nomad_landing_page/common/widgets/custom_outline_button.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_image/custom_cloud_image.dart';
+import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_padding.dart';
 import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_text.dart';
 import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_widget.dart';
 
@@ -10,121 +10,256 @@ class ServicesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned.fill(
-          child: CustomCloudImage(
-            id: 'services_section_gwa2gg',
-            key: Key('services-backgroundImage'),
-            fit: BoxFit.cover,
-            alignment: Alignment.center,
-          ),
-        ),
-        ResponsiveLayout(
+    return Container(
+      color: Colors.white,
+      child: ResponsivePadding(
+        desktopPadding: EdgeInsets.symmetric(vertical: 50),
+        mobilePadding: EdgeInsets.symmetric(vertical: 20),
+        child: ResponsiveLayout(
           desktop: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 10),
-              ResponsiveText(
-                'SERVICIOS',
-                style: Theme.of(context)
-                    .textTheme
-                    .displayLarge
-                    ?.copyWith(color: Theme.of(context).primaryColor),
-                mobileFontSize:
-                    Theme.of(context).textTheme.displaySmall?.fontSize,
+              Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                      width: 1,
+                    ),
+                  ),
+                ),
+                child: ResponsivePadding(
+                  widePadding: const EdgeInsets.symmetric(horizontal: 200.0),
+                  desktopPadding: const EdgeInsets.symmetric(horizontal: 150.0),
+                  tabletPadding: const EdgeInsets.symmetric(horizontal: 50.0),
+                  child: Column(
+                    children: [
+                      _Title(),
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _LogoPlaceholder(index: '1'),
+                          _LogoPlaceholder(index: '2'),
+                          _LogoPlaceholder(index: '3'),
+                          _LogoPlaceholder(index: '4'),
+                          _LogoPlaceholder(index: '5'),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                    ],
+                  ),
+                ),
               ),
               SizedBox(height: 10),
-              SizedBox(height: 60),
-              Row(
-                children: [
-                  Expanded(
-                    child: ServiceContainer(
-                      icon: CupertinoIcons.camera,
-                      title: 'FOTOGRAFIA COMERCIAL',
-                      description:
-                          'Creo que la fotografia es más que simplemente tomar imágenes: se trata de ver el mundo a través de un lente y encontrar la belleza en lugares inesperados.'
-                          ' Con un ojo agudo para los detalles y un enfoque creativo.'
-                          ' Estoy dedicado a convertir momentos ordinarios en obras de arte extraordinarias.',
-                    ),
+              Flexible(
+                child: ResponsivePadding(
+                  widePadding: const EdgeInsets.symmetric(horizontal: 150.0),
+                  desktopPadding: const EdgeInsets.symmetric(horizontal: 100.0),
+                  tabletPadding: const EdgeInsets.symmetric(horizontal: 50.0),
+                  child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: ResponsivePadding(
+                          desktopPadding: const EdgeInsets.symmetric(horizontal: 25.0),
+                          widePadding: const EdgeInsets.symmetric(horizontal: 25.0),
+                          tabletPadding: const EdgeInsets.symmetric(horizontal: 15.0),
+                          mobilePadding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: const _Portrait(mobile: true),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(height: 10),
+                              const _ServicesHeader(mobile: false),
+                              SizedBox(height: 20),
+                              Flexible(child: SingleChildScrollView(child: const _Description(mobile: false))),
+                              SizedBox(height: 20),
+                              CustomOutlineButton(text: 'CONTACT ME'),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  Expanded(
-                    child: ServiceContainer(
-                      icon: CupertinoIcons.film,
-                      title: 'PRODUCCIONES AUDIOVISUALES',
-                      description:
-                          'Adéntrate en el mundo de la narración con mis servicios de cine.'
-                          ' Estoy aqui para dar vida a tu visión, capturando y entrelazando momentos que hacen que tu historia merezca ser contada.'
-                          ' Desde el primer plano hasta los créditos finales, utilizo la magia del cine para asegurarme de que tu mensaje se escuche alto y claro.',
-                    ),
-                  ),
-                  Expanded(
-                    child: ServiceContainer(
-                      icon: Icons.widgets,
-                      description:
-                          'Las redes sociales son una herramienta poderosa que puede ayudarte a hacer crecer tu negocio, aumentar tu influencia y conectarte con personas de todo el mundo.'
-                          ' Con mis servicios de exposición en redes sociales, utilizo mi conocimiento de la industria para ayudarte a aprovechar el poder de las redes sociales y alcanzar tus objetivos.',
-                      title: 'PUBLICIDAD',
-                    ),
-                  ),
-                ],
+                ),
               ),
             ],
           ),
-          mobile: LayoutBuilder(builder: (context, constraints) {
-            return SizedBox(
-              height: constraints.maxHeight,
-              child: Column(
-                children: [
-                  SizedBox(height: 10),
-                  ResponsiveText(
-                    'SERVICIOS',
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayLarge
-                        ?.copyWith(color: Theme.of(context).primaryColor),
-                    mobileFontSize:
-                        Theme.of(context).textTheme.displaySmall?.fontSize,
-                  ),
-                  SizedBox(height: 10),
-                  Expanded(
-                    child: ServiceContainer(
-                      icon: Icons.widgets,
-                      description:
-                          'Las redes sociales son una herramienta poderosa que puede ayudarte a hacer crecer tu negocio, aumentar tu influencia y conectarte con personas de todo el mundo.'
-                          ' Con mis servicios de exposición en redes sociales, utilizo mi conocimiento de la industria para ayudarte a aprovechar el poder de las redes sociales y alcanzar tus objetivos.',
-                      title: 'PUBLICIDAD',
-                      condensed: true,
+          mobile: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                      width: 1,
                     ),
                   ),
-                  Expanded(
-                    child: ServiceContainer(
-                      icon: CupertinoIcons.film,
-                      title: 'PRODUCCIONES AUDIOVISUALES',
-                      description:
-                          'Adéntrate en el mundo de la narración con mis servicios de cine.'
-                          ' Estoy aqui para dar vida a tu visión, capturando y entrelazando momentos que hacen que tu historia merezca ser contada.'
-                          ' Desde el primer plano hasta los créditos finales, utilizo la magia del cine para asegurarme de que tu mensaje se escuche alto y claro.',
-                      condensed: true,
+                ),
+                child: Column(
+                  children: [
+                    _Title(),
+                    SizedBox(height: 10),
+                    Wrap(
+                      spacing: 10,
+                      children: [
+                        _LogoPlaceholder(index: '1'),
+                        _LogoPlaceholder(index: '2'),
+                        _LogoPlaceholder(index: '3'),
+                        _LogoPlaceholder(index: '4'),
+                        _LogoPlaceholder(index: '5'),
+                      ],
                     ),
-                  ),
-                  Expanded(
-                    child: ServiceContainer(
-                      icon: CupertinoIcons.camera,
-                      title: 'FOTOGRAFIA COMERCIAL',
-                      description:
-                          'Creo que la fotografia es más que simplemente tomar imágenes: se trata de ver el mundo a través de un lente y encontrar la belleza en lugares inesperados.'
-                          ' Con un ojo agudo para los detalles y un enfoque creativo.'
-                          ' Estoy dedicado a convertir momentos ordinarios en obras de arte extraordinarias.',
-                      condensed: true,
-                    ),
-                  ),
-                ],
+                    SizedBox(height: 10),
+                  ],
+                ),
               ),
-            );
-          }),
-        )
-      ],
+              SizedBox(height: 20),
+              Flexible(
+                child: Column(
+                  children: [
+                    Flexible(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
+                          child: Column(mainAxisSize: MainAxisSize.min, children: [
+                            // const _Portrait(),
+                            // SizedBox(height: 10),
+                            Row(
+                              spacing: 10,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(height: 100, child: _Portrait(mobile: true)),
+                                const _ServicesHeader(mobile: true),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            const _Description(mobile: true),
+
+                            SizedBox(height: 10),
+                          ]),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    CustomOutlineButton(
+                      text: 'CONTACT ME',
+                      condensed: true,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
     );
+  }
+}
+
+class _Title extends StatelessWidget {
+  const _Title();
+
+  @override
+  Widget build(BuildContext context) {
+    return ResponsiveText(
+      'BRANDS AND COMPANIES I\'VE HAD THE PLEASURE TO WORK WITH',
+      mobileFontSize: 14,
+      textAlign: TextAlign.center,
+      style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, wordSpacing: 5, letterSpacing: 5),
+      desktopFontSize: 18,
+    );
+  }
+}
+
+class _Portrait extends StatelessWidget {
+  const _Portrait({
+    required this.mobile,
+  });
+  final bool mobile;
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: 400,
+      ),
+      child: ResponsivePadding(
+          desktopPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+          tabletPadding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+          mobilePadding: const EdgeInsets.all(5.0),
+          child: CustomCloudImage(id: 'portrait_tluflv')),
+    );
+  }
+}
+
+class _ServicesHeader extends StatelessWidget {
+  const _ServicesHeader({required this.mobile});
+  final bool mobile;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = TextStyle(color: Colors.black, fontWeight: FontWeight.w500, wordSpacing: 5, letterSpacing: 5);
+    if (mobile) {
+      return Text(
+        'DOCUMENTARY\nTRAVEL\nCOMMERCIAL',
+        style: style.copyWith(fontSize: 14),
+      );
+    }
+    return ResponsiveText(
+      'DOCUMENTARY | TRAVEL | COMMERCIAL',
+      style: style,
+      desktopFontSize: 18,
+      wideFontSize: 18,
+      mobileFontSize: 14,
+      textAlign: TextAlign.center,
+    );
+  }
+}
+
+class _Description extends StatelessWidget {
+  const _Description({required this.mobile});
+  final bool mobile;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      '''
+Storyteller Nomad is my photography and filmmaking journey where I document travel, culture, and territory through an honest, sensitive, high-quality lens, always with a strong human focus. My work seeks to connect, through images, those who are far from these realities with the stories of extraordinary people.
+
+I have more than 8 years of experience working with organizations and brands, and for the past 3 years I've been building my independent path. I specialize in creating high-level audiovisual content in diverse contexts, from documentary projects to tourism and corporate productions.
+
+ I'm José Méndez, a filmmaker, photographer, and editor. For me, the image is not just a job—it's a passion and a tool to tell stories that deserve to be seen, understood, and remembered.''',
+      textAlign: TextAlign.center,
+      style: TextStyle(
+        fontWeight: FontWeight.w500,
+        color: Colors.black,
+        wordSpacing: mobile ? 1.5 : 2.5,
+        letterSpacing: mobile ? 1.5 : 2.5,
+        height: mobile ? 1.5 : 2.0,
+        fontSize: mobile ? 11 : 12,
+      ),
+    );
+  }
+}
+
+class _LogoPlaceholder extends StatelessWidget {
+  const _LogoPlaceholder({required this.index});
+  final String index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('LOGO $index', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w900, fontSize: 30));
   }
 }
