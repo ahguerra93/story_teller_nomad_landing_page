@@ -39,11 +39,14 @@ class ServicesSection extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          _LogoPlaceholder(index: '1'),
-                          _LogoPlaceholder(index: '2'),
-                          _LogoPlaceholder(index: '3'),
-                          _LogoPlaceholder(index: '4'),
-                          _LogoPlaceholder(index: '5'),
+                          _Logo(id: 'logo-mitsubishi_sz6thl', mobile: false),
+                          _Logo(id: 'logo-onu_hq6aao', mobile: false),
+                          _Logo(id: 'logo-UE_wzbtbw', mobile: false),
+                          _Logo(id: 'logo-venado_wamb3r', mobile: false),
+                          _Logo(id: 'logo-delizia_amhezx', mobile: false),
+                          _Logo(id: 'logo-ugn_kf69iq', mobile: false),
+                          _Logo(id: 'logo-HT_eoefl1', mobile: false),
+                          _Logo(id: 'logo-crillon_jfrqya', mobile: false),
                         ],
                       ),
                       SizedBox(height: 10),
@@ -114,11 +117,14 @@ class ServicesSection extends StatelessWidget {
                     Wrap(
                       spacing: 10,
                       children: [
-                        _LogoPlaceholder(index: '1'),
-                        _LogoPlaceholder(index: '2'),
-                        _LogoPlaceholder(index: '3'),
-                        _LogoPlaceholder(index: '4'),
-                        _LogoPlaceholder(index: '5'),
+                        _Logo(id: 'logo-mitsubishi_sz6thl', mobile: true),
+                        _Logo(id: 'logo-onu_hq6aao', mobile: true),
+                        _Logo(id: 'logo-UE_wzbtbw', mobile: true),
+                        _Logo(id: 'logo-venado_wamb3r', mobile: true),
+                        _Logo(id: 'logo-delizia_amhezx', mobile: true),
+                        _Logo(id: 'logo-ugn_kf69iq', mobile: true),
+                        _Logo(id: 'logo-HT_eoefl1', mobile: true),
+                        _Logo(id: 'logo-crillon_jfrqya', mobile: true),
                       ],
                     ),
                     SizedBox(height: 10),
@@ -254,12 +260,18 @@ I have more than 8 years of experience working with organizations and brands, an
   }
 }
 
-class _LogoPlaceholder extends StatelessWidget {
-  const _LogoPlaceholder({required this.index});
-  final String index;
+class _Logo extends StatelessWidget {
+  const _Logo({required this.id, required this.mobile});
+  final String id;
+  final bool mobile;
 
   @override
   Widget build(BuildContext context) {
-    return Text('LOGO $index', style: TextStyle(color: Colors.black, fontWeight: FontWeight.w900, fontSize: 30));
+    return SizedBox(
+      height: mobile ? 70 : 100,
+      child: CustomCloudImage(
+        id: id,
+      ),
+    );
   }
 }

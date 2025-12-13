@@ -48,8 +48,7 @@ class _ZoomOnHoverState extends State<ZoomOnHover> {
               color: Colors.black,
               curve: Curves.easeOut,
               transform: Matrix4.identity()
-                ..scale(_isHovered ? widget.zoomFactor : 1.0,
-                    _isHovered ? widget.zoomFactor : 1.0),
+                ..scale(_isHovered ? widget.zoomFactor : 1.0, _isHovered ? widget.zoomFactor : 1.0),
               transformAlignment: Alignment.center,
               child: AnimatedPhysicalModel(
                 duration: widget.duration,
@@ -57,10 +56,7 @@ class _ZoomOnHoverState extends State<ZoomOnHover> {
                 elevation: _isHovered ? 8 : 0,
                 color: Colors.transparent,
                 shadowColor: Colors.black,
-                child: AnimatedOpacity(
-                    duration: widget.duration,
-                    opacity: _isHovered ? 0.5 : 1,
-                    child: widget.child),
+                child: AnimatedOpacity(duration: widget.duration, opacity: _isHovered ? 0.75 : 1, child: widget.child),
               ),
             ),
           ),
