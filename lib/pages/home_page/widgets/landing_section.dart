@@ -1,4 +1,6 @@
+import 'package:cloudinary_url_gen/transformation/layer/position/position.dart';
 import 'package:flutter/material.dart';
+import 'package:story_teller_nomad_landing_page/common/widgets/custom_outline_button.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_video/custom_cloud_video.dart';
 import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_text.dart';
 
@@ -16,30 +18,30 @@ class LandingSection extends StatelessWidget {
             id: 'Portada_ihyzc1',
             key: Key('Home-backgroundImage'),
           )),
+          Positioned(
+            top: 30,
+            left: 30,
+            child: Text('LOGO'),
+          ),
           Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ResponsiveText(
-                  'Storyteller Nomad',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.displayLarge?.copyWith(fontWeight: FontWeight.bold),
-                  wideFontSize: 95,
-                  desktopFontSize: 85,
-                  tabletFontSize: Theme.of(context).textTheme.displayLarge?.fontSize,
-                  mobileFontSize: Theme.of(context).textTheme.displayMedium?.fontSize,
-                ),
-                SizedBox(height: 16),
-                ResponsiveText(
-                  'Photographer - Filmmaker - FPV pilot',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                  wideFontSize: Theme.of(context).textTheme.headlineLarge?.fontSize,
-                  desktopFontSize: Theme.of(context).textTheme.headlineMedium?.fontSize,
-                  tabletFontSize: Theme.of(context).textTheme.headlineSmall?.fontSize,
-                  mobileFontSize: Theme.of(context).textTheme.labelLarge?.fontSize,
-                ),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 16.0,
+                children: [
+                  ResponsiveText(
+                    'PHOTOGRAPHER | FILMMAKER | FPV PILOT',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      letterSpacing: 5.0,
+                    ),
+                  ),
+                  CustomOutlineButton(text: 'CONTACT', darkMode: true, onPressed: () {}),
+                ],
+              ),
             ),
           ),
         ],

@@ -7,8 +7,8 @@ class PortfolioSection extends StatelessWidget {
   const PortfolioSection({super.key});
   final _photosKeyLabel = 'porfolio-photos-image';
   final _videosKeyLabel = 'porfolio-videos-image';
-  final _photosPath = 'photos_section_iz7uym';
-  final _videosPath = 'videos_section_ojecrc';
+  final _photosPath = 'photos-section-updated_ezmngf';
+  final _videosPath = 'video-section-updated_xflov4';
   final _photosTitle = 'Photos';
   final _videosTitle = 'Videos';
   @override

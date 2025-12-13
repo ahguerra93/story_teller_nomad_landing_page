@@ -41,9 +41,13 @@ class _CustomCloudVideoState extends State<CustomCloudVideo> {
   @override
   Widget build(BuildContext context) {
     return _controller.value.isInitialized
-        ? AspectRatio(
-            aspectRatio: _controller.value.aspectRatio,
-            child: VideoPlayer(_controller),
+        ? FittedBox(
+            fit: BoxFit.cover,
+            child: SizedBox(
+              width: _controller.value.size.width,
+              height: _controller.value.size.height,
+              child: VideoPlayer(_controller),
+            ),
           )
         : Container(
             child: _controller.value.hasError
