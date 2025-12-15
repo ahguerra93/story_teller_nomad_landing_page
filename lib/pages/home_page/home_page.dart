@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final mobile = MediaQuery.of(context).size.width < Breakpoints.tablet;
-    final margin = mobile ? 20.0 : 30.0;
+    final margin = mobile ? 15.0 : 30.0;
     final darkMode = index != 1;
     final color = darkMode
         ? Colors.white
@@ -47,16 +47,6 @@ class _HomePageState extends State<HomePage> {
                 });
               },
             ),
-            // PageView(
-            //   pageSnapping: true,
-            //   scrollDirection: Axis.vertical,
-            //   controller: _controller,
-            //   children: [
-            //     LandingSection(),
-            //     ServicesSection(),
-            //     PortfolioSection(),
-            //   ],
-            // ),
           ),
           Align(
             alignment: Alignment.centerRight,
@@ -89,16 +79,28 @@ class _HomePageState extends State<HomePage> {
           Positioned(
             bottom: margin,
             left: margin,
-            child: ResponsiveText(
-              '© Storytellernomad',
-              style: TextStyle(
-                color: color,
-                fontSize: 20,
-                wordSpacing: 5.0,
-                letterSpacing: 5.0,
+            child: Row(spacing: 5, children: [
+              ResponsiveText(
+                '©',
+                style: TextStyle(
+                  color: color,
+                  fontSize: 25,
+                  wordSpacing: 3.0,
+                  letterSpacing: 3.0,
+                ),
+                mobileFontSize: 15,
               ),
-              mobileFontSize: 10,
-            ),
+              ResponsiveText(
+                'Storytellernomad',
+                style: TextStyle(
+                  color: color,
+                  fontSize: 18,
+                  wordSpacing: 3.0,
+                  letterSpacing: 3.0,
+                ),
+                mobileFontSize: 10,
+              ),
+            ]),
           ),
           Positioned(
             bottom: margin,

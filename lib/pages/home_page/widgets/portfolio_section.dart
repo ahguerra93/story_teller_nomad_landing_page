@@ -9,8 +9,8 @@ class PortfolioSection extends StatelessWidget {
   final _videosKeyLabel = 'porfolio-videos-image';
   final _photosPath = 'photos-section-updated_ezmngf';
   final _videosPath = 'video-section-updated_xflov4';
-  final _photosTitle = 'Photos';
-  final _videosTitle = 'Videos';
+  final _photosTitle = 'PHOTOS';
+  final _videosTitle = 'VIDEOS';
   @override
   Widget build(BuildContext context) {
     return ResponsiveLayout(

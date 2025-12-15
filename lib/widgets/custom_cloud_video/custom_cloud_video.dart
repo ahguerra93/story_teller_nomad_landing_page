@@ -6,8 +6,9 @@ import 'package:story_teller_nomad_landing_page/config/models/repo_config/repo_c
 import 'package:video_player/video_player.dart';
 
 class CustomCloudVideo extends StatefulWidget {
-  const CustomCloudVideo({required this.id, super.key});
+  const CustomCloudVideo({required this.id, this.placeholder, super.key});
   final String id;
+  final Widget? placeholder;
 
   @override
   State<CustomCloudVideo> createState() => _CustomCloudVideoState();
@@ -51,22 +52,26 @@ class _CustomCloudVideoState extends State<CustomCloudVideo> {
 
   @override
   Widget build(BuildContext context) {
-    return _controller.value.isInitialized
-        ? FittedBox(
-            fit: BoxFit.cover,
-            child: SizedBox(
-              width: _controller.value.size.width,
-              height: _controller.value.size.height,
-              child: VideoPlayer(_controller),
-            ),
-          )
-        : Container(
-            child: _controller.value.hasError
-                ? Center(
-                    child: Icon(Icons.broken_image, size: 48, color: Colors.grey[400]),
-                  )
-                : Center(child: CircularProgressIndicator()),
-          );
+    return FittedBox(
+        fit: _controller.value.isInitialized ? BoxFit.cover : BoxFit.none,
+        child: AnimatedSwitcher(
+          duration: Duration(milliseconds: 300),
+          child: _controller.value.isInitialized
+              ? SizedBox(
+                  width: _controller.value.size.width,
+                  height: _controller.value.size.height,
+                  child: VideoPlayer(_controller),
+                )
+              : Container(
+                  child: _controller.value.hasError
+                      ? Center(
+                          child: Icon(Icons.broken_image, size: 48, color: Colors.grey[400]),
+                        )
+                      : widget.placeholder ??
+                          Center(
+                            child: CircularProgressIndicator(),
+                          )),
+        ));
   }
 
   @override

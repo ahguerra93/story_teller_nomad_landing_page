@@ -1,5 +1,7 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/custom_outline_button.dart';
+import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_image/custom_cloud_image.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_video/custom_cloud_video.dart';
 import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_text.dart';
 
@@ -13,9 +15,23 @@ class LandingSection extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
+            child: ImageFiltered(
+              imageFilter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              child: CustomCloudImage(
+                id: 'video-cover-loader_wdreyo',
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Positioned.fill(
               child: CustomCloudVideo(
             id: 'video-cover_fbeun9',
             key: Key('Home-backgroundImage'),
+            placeholder: Center(
+              child: CircularProgressIndicator(
+                color: Colors.white.withAlpha(150),
+              ),
+            ),
           )),
           Positioned(
             top: 30,
