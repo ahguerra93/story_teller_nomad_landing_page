@@ -1,11 +1,11 @@
 {
-    "name": "story_teller_nomad_landing_page",
-    "short_name": "story_teller_nomad_landing_page",
+    "name": "Story Teller Nomad",
+    "short_name": "Story Teller Nomad",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "description": "Photographer | Filmmaker | FPV Pilot",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

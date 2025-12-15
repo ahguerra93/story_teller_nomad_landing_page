@@ -14,10 +14,10 @@ class ServicesSection extends StatelessWidget {
       color: Colors.white,
       child: ResponsivePadding(
         desktopPadding: EdgeInsets.symmetric(vertical: 50),
-        mobilePadding: EdgeInsets.symmetric(vertical: 20),
+        mobilePadding: EdgeInsets.only(top: 20, bottom: 35),
         child: ResponsiveLayout(
           desktop: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
                 decoration: BoxDecoration(
@@ -55,7 +55,7 @@ class ServicesSection extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 10),
-              Flexible(
+              Expanded(
                 child: ResponsivePadding(
                   widePadding: const EdgeInsets.symmetric(horizontal: 150.0),
                   desktopPadding: const EdgeInsets.symmetric(horizontal: 100.0),
@@ -86,7 +86,7 @@ class ServicesSection extends StatelessWidget {
                               SizedBox(height: 20),
                               Flexible(child: SingleChildScrollView(child: const _Description(mobile: false))),
                               SizedBox(height: 20),
-                              CustomOutlineButton(text: 'CONTACT ME'),
+                              CustomOutlineButton(text: 'LET\'S WORK TOGETHER'),
                             ],
                           ),
                         ),
@@ -101,7 +101,7 @@ class ServicesSection extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 25),
                 decoration: BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
@@ -160,7 +160,7 @@ class ServicesSection extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     CustomOutlineButton(
-                      text: 'CONTACT ME',
+                      text: 'LET\'S WORK TOGETHER',
                       condensed: true,
                     ),
                   ],
@@ -184,7 +184,7 @@ class _Title extends StatelessWidget {
       mobileFontSize: 14,
       textAlign: TextAlign.center,
       style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500, wordSpacing: 5, letterSpacing: 5),
-      desktopFontSize: 18,
+      desktopFontSize: 20,
     );
   }
 }

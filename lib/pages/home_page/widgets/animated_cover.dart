@@ -51,9 +51,7 @@ class _AnimatedCoverState extends State<AnimatedCover> {
         Center(
           child: Text(
             widget.title,
-            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+            style: TextStyle(fontSize: 28, wordSpacing: 5.0, letterSpacing: 5.0),
           ),
         )
       ],
