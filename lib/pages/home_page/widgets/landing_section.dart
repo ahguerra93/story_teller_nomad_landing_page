@@ -14,7 +14,7 @@ class LandingSection extends StatelessWidget {
         children: [
           Positioned.fill(
               child: CustomCloudVideo(
-            id: 'Portada_ihyzc1',
+            id: 'video-cover_fbeun9',
             key: Key('Home-backgroundImage'),
           )),
           Positioned(
@@ -22,7 +22,8 @@ class LandingSection extends StatelessWidget {
             left: 30,
             child: Text('LOGO'),
           ),
-          Center(
+          Align(
+            alignment: Alignment(0, 0.6),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
