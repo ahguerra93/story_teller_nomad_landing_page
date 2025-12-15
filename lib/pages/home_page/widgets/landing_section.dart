@@ -1,4 +1,3 @@
-import 'package:cloudinary_url_gen/transformation/layer/position/position.dart';
 import 'package:flutter/material.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/custom_outline_button.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_video/custom_cloud_video.dart';
