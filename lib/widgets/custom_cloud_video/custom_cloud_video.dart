@@ -35,7 +35,18 @@ class _CustomCloudVideoState extends State<CustomCloudVideo> {
           await _controller.play();
           setState(() {});
         });
-      });
+      }).onError(
+        (error, stackTrace) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Error loading video: $error'),
+              ),
+            );
+            log('Error initializing video: $error');
+          }
+        },
+      );
   }
 
   @override
