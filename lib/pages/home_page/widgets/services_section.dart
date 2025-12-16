@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:story_teller_nomad_landing_page/common/utils/email_util.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/custom_outline_button.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_image/custom_cloud_image.dart';
 import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_padding.dart';
@@ -42,6 +43,7 @@ class ServicesSection extends StatelessWidget {
                           _Logo(id: 'logo-mitsubishi_sz6thl', mobile: false),
                           _Logo(id: 'logo-onu_hq6aao', mobile: false),
                           _Logo(id: 'logo-UE_wzbtbw', mobile: false),
+                          _Logo(id: 'logo-cbn_jx2asx', mobile: false),
                           _Logo(id: 'logo-venado_wamb3r', mobile: false),
                           _Logo(id: 'logo-delizia_amhezx', mobile: false),
                           _Logo(id: 'logo-ugn_kf69iq', mobile: false),
@@ -86,7 +88,7 @@ class ServicesSection extends StatelessWidget {
                               SizedBox(height: 20),
                               Flexible(child: SingleChildScrollView(child: const _Description(mobile: false))),
                               SizedBox(height: 20),
-                              CustomOutlineButton(text: 'LET\'S WORK TOGETHER'),
+                              _Button(mobile: false),
                             ],
                           ),
                         ),
@@ -120,6 +122,7 @@ class ServicesSection extends StatelessWidget {
                         _Logo(id: 'logo-mitsubishi_sz6thl', mobile: true),
                         _Logo(id: 'logo-onu_hq6aao', mobile: true),
                         _Logo(id: 'logo-UE_wzbtbw', mobile: true),
+                        _Logo(id: 'logo-cbn_jx2asx', mobile: true),
                         _Logo(id: 'logo-venado_wamb3r', mobile: true),
                         _Logo(id: 'logo-delizia_amhezx', mobile: true),
                         _Logo(id: 'logo-ugn_kf69iq', mobile: true),
@@ -159,10 +162,7 @@ class ServicesSection extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 10),
-                    CustomOutlineButton(
-                      text: 'LET\'S WORK TOGETHER',
-                      condensed: true,
-                    ),
+                    _Button(mobile: true),
                   ],
                 ),
               )
@@ -170,6 +170,22 @@ class ServicesSection extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _Button extends StatelessWidget {
+  const _Button({required this.mobile});
+  final bool mobile;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomOutlineButton(
+      onPressed: () {
+        EmailUtil.launchEmailClient();
+      },
+      text: 'LET\'S WORK TOGETHER',
+      condensed: mobile,
     );
   }
 }

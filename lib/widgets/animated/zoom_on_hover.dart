@@ -17,7 +17,7 @@ class ZoomOnHover extends StatefulWidget {
   });
 
   @override
-  _ZoomOnHoverState createState() => _ZoomOnHoverState();
+  State<ZoomOnHover> createState() => _ZoomOnHoverState();
 }
 
 class _ZoomOnHoverState extends State<ZoomOnHover> {

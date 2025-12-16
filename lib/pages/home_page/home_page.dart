@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:story_teller_nomad_landing_page/common/widgets/hamburger_menu.dart';
+import 'package:story_teller_nomad_landing_page/common/widgets/social_icons.dart';
 import 'package:story_teller_nomad_landing_page/config/responsiveness/breakpoints.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/gesture_card_deck.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/landing_section.dart';
@@ -25,6 +26,7 @@ class _HomePageState extends State<HomePage> {
     final color = darkMode
         ? Colors.white
         : Colors.black; // Change text/icon color based on section (assuming services section is light mode)
+
     return Scaffold(
       body: Stack(
         children: [
@@ -67,13 +69,8 @@ class _HomePageState extends State<HomePage> {
           Positioned(
             top: margin,
             right: margin,
-            child: InkWell(
-              onTap: () {},
-              child: Icon(
-                Icons.menu,
-                color: color,
-                size: 30,
-              ),
+            child: HamburgerMenu(
+              darkMode: darkMode,
             ),
           ),
           Positioned(
@@ -105,45 +102,11 @@ class _HomePageState extends State<HomePage> {
           Positioned(
             bottom: margin,
             right: margin,
-            child: _SocialIcons(darkMode: darkMode),
+            child: SocialIcons(darkMode: darkMode),
           ),
         ],
       ),
     );
-  }
-}
-
-class _SocialIcons extends StatelessWidget {
-  const _SocialIcons({required this.darkMode});
-  final bool darkMode;
-
-  @override
-  Widget build(BuildContext context) {
-    final mobile = MediaQuery.of(context).size.width < Breakpoints.tablet;
-    final size = mobile ? 16.0 : 24.0;
-    final spacing = mobile ? 10.0 : 16.0;
-    final color = darkMode ? Colors.white : Colors.black;
-    return mobile
-        ? Column(
-            mainAxisSize: MainAxisSize.min,
-            spacing: spacing,
-            children: [
-              Icon(FontAwesomeIcons.instagram, color: color, size: size),
-              Icon(FontAwesomeIcons.youtube, color: color, size: size),
-              Icon(FontAwesomeIcons.tiktok, color: color, size: size),
-              Icon(FontAwesomeIcons.xTwitter, color: color, size: size),
-            ],
-          )
-        : Row(
-            spacing: spacing,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(FontAwesomeIcons.instagram, color: color, size: size),
-              Icon(FontAwesomeIcons.youtube, color: color, size: size),
-              Icon(FontAwesomeIcons.tiktok, color: color, size: size),
-              Icon(FontAwesomeIcons.xTwitter, color: color, size: size),
-            ],
-          );
   }
 }
 

@@ -6,7 +6,7 @@ class GalleryPage extends StatefulWidget {
   const GalleryPage({super.key});
 
   @override
-  _ImageGalleryState createState() => _ImageGalleryState();
+  State<GalleryPage> createState() => _ImageGalleryState();
 }
 
 class _ImageGalleryState extends State<GalleryPage> {
