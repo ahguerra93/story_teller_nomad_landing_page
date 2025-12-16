@@ -18,12 +18,14 @@ class SocialIcons extends StatelessWidget {
     final color = darkMode ? Colors.white : Colors.black;
     const instagramUrl = 'https://www.instagram.com/storytellernomad';
     const facebookUrl = 'https://www.facebook.com/storytellernomads';
+    const youtubeUrl = 'https://www.youtube.com/@storytellernomad';
     const tiktokUrl = 'https://www.tiktok.com/@storytellernomad';
-    // const twitterUrl = 'https://twitter.com';
+    const twitterUrl = 'https://x.com/stellernomad';
     const instagramIcon = FontAwesomeIcons.instagram;
     const facebookIcon = FontAwesomeIcons.facebook;
+    const youtubeIcon = FontAwesomeIcons.youtube;
     const tiktokIcon = FontAwesomeIcons.tiktok;
-    // const twitterIcon = FontAwesomeIcons.xTwitter;
+    const twitterIcon = FontAwesomeIcons.xTwitter;
     return mobile && verticalOnMobile
         ? Column(
             mainAxisSize: MainAxisSize.min,
@@ -31,8 +33,9 @@ class SocialIcons extends StatelessWidget {
             children: [
               _Icon(iconData: instagramIcon, url: instagramUrl, color: color, size: size),
               _Icon(iconData: facebookIcon, url: facebookUrl, color: color, size: size),
+              _Icon(iconData: youtubeIcon, url: youtubeUrl, color: color, size: size),
               _Icon(iconData: tiktokIcon, url: tiktokUrl, color: color, size: size),
-              // _Icon(iconData: twitterIcon, url: twitterUrl, color: color, size: size),
+              _Icon(iconData: twitterIcon, url: twitterUrl, color: color, size: size),
             ],
           )
         : Row(
@@ -41,8 +44,9 @@ class SocialIcons extends StatelessWidget {
             children: [
               _Icon(iconData: instagramIcon, url: instagramUrl, color: color, size: size),
               _Icon(iconData: facebookIcon, url: facebookUrl, color: color, size: size),
+              _Icon(iconData: youtubeIcon, url: youtubeUrl, color: color, size: size),
               _Icon(iconData: tiktokIcon, url: tiktokUrl, color: color, size: size),
-              // _Icon(iconData: twitterIcon, url: twitterUrl, color: color, size: size),
+              _Icon(iconData: twitterIcon, url: twitterUrl, color: color, size: size),
             ],
           );
   }

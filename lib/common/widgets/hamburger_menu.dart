@@ -72,6 +72,7 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
                     color: color,
                     onTap: () {
                       // Handle Photography navigation
+                      context.go('/photo-gallery');
                       log('Photography tapped');
                     },
                   ),
