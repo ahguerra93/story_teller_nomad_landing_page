@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:story_teller_nomad_landing_page/common/utils/email_util.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/custom_outline_button.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_image/custom_cloud_image.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_video/custom_cloud_video.dart';
@@ -55,7 +56,12 @@ class LandingSection extends StatelessWidget {
                       letterSpacing: 5.0,
                     ),
                   ),
-                  CustomOutlineButton(text: 'CONTACT', darkMode: true, onPressed: () {}),
+                  CustomOutlineButton(
+                      text: 'CONTACT',
+                      darkMode: true,
+                      onPressed: () async {
+                        EmailUtil.launchEmailClient();
+                      }),
                 ],
               ),
             ),

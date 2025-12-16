@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HamburgerMenu extends StatefulWidget {
   const HamburgerMenu({
@@ -88,7 +89,9 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
                     text: 'CONTACT',
                     color: color,
                     onTap: () {
-                      context.go('/contact');
+                      launchUrl(Uri.parse(
+                          'mailto:contact@storytellernomad.com?subject=Contact&body=Hi!+I+would+like+to+get+in+touch+with+you.'));
+                      // context.go('/contact');
                     },
                   ),
                 ],

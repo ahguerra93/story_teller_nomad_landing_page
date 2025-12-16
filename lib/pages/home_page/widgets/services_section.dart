@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:story_teller_nomad_landing_page/common/utils/email_util.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/custom_outline_button.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_image/custom_cloud_image.dart';
 import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_padding.dart';
@@ -88,7 +88,7 @@ class ServicesSection extends StatelessWidget {
                               SizedBox(height: 20),
                               Flexible(child: SingleChildScrollView(child: const _Description(mobile: false))),
                               SizedBox(height: 20),
-                              CustomOutlineButton(text: 'LET\'S WORK TOGETHER'),
+                              _Button(mobile: false),
                             ],
                           ),
                         ),
@@ -162,13 +162,7 @@ class ServicesSection extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 10),
-                    CustomOutlineButton(
-                      onPressed: () {
-                        context.go('/contact');
-                      },
-                      text: 'LET\'S WORK TOGETHER',
-                      condensed: true,
-                    ),
+                    _Button(mobile: true),
                   ],
                 ),
               )
@@ -176,6 +170,22 @@ class ServicesSection extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _Button extends StatelessWidget {
+  const _Button({required this.mobile});
+  final bool mobile;
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomOutlineButton(
+      onPressed: () {
+        EmailUtil.launchEmailClient();
+      },
+      text: 'LET\'S WORK TOGETHER',
+      condensed: mobile,
     );
   }
 }

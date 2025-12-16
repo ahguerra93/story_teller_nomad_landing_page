@@ -48,7 +48,7 @@ class ContactPage extends StatelessWidget {
 }
 
 class _CoverImage extends StatelessWidget {
-  const _CoverImage({super.key});
+  const _CoverImage();
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class _CoverImage extends StatelessWidget {
 }
 
 class _ContactForm extends StatefulWidget {
-  const _ContactForm({required this.isMobile, super.key});
+  const _ContactForm({required this.isMobile});
   final bool isMobile;
 
   @override
@@ -66,11 +66,13 @@ class _ContactForm extends StatefulWidget {
 
 class _ContactFormState extends State<_ContactForm> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _mailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final titleFontSize = widget.isMobile ? 20.0 : 24.0;
     final subtitleFontSize = widget.isMobile ? 15.0 : 20.0;
     const color = Colors.black;
+
     return Container(
       color: Colors.white,
       child: ResponsivePadding(
@@ -115,6 +117,7 @@ class _ContactFormState extends State<_ContactForm> {
                     label: 'Email',
                     mobile: widget.isMobile,
                     isRequired: true,
+                    controller: _mailController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
@@ -137,6 +140,13 @@ class _ContactFormState extends State<_ContactForm> {
                       condensed: widget.isMobile,
                       onPressed: () {
                         if (!(_formKey.currentState?.validate() ?? false)) return;
+                        // final resend = Resend.instance;
+                        // resend.sendEmail(
+                        //   from: 'contact@storytellernomad.com',
+                        //   to: ['contact@storytellernomad.com'],
+                        //   subject: '${_mailController.text} - New Contact Form Submission',
+                        //   text: 'it works!',
+                        // );
                       }),
                   Text(
                     'Or find me here',
@@ -157,16 +167,17 @@ class _TextFormField extends StatelessWidget {
   const _TextFormField({
     required this.label,
     this.isRequired = false,
-    super.key,
     this.maxLines = 1,
     this.validator,
     this.mobile,
+    this.controller,
   });
   final String label;
   final bool isRequired;
   final int? maxLines;
   final String? Function(String?)? validator;
   final bool? mobile;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -176,6 +187,7 @@ class _TextFormField extends StatelessWidget {
         color: Colors.black,
         fontSize: mobile == true ? 14.0 : null,
       ),
+      controller: controller,
       decoration: InputDecoration(
         labelText: isRequired ? '$label *' : label,
         labelStyle: TextStyle(fontSize: mobile == true ? 14.0 : null, color: Colors.black),
