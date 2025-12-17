@@ -52,32 +52,33 @@ class _GalleryCoverState extends State<GalleryCover> {
                 ),
               ),
               Align(
-                alignment: Alignment(-0.2, 0.5),
-                child: AnimatedOpacity(
-                  opacity: widget.isFocused ? 0.4 : 0.0,
-                  duration: const Duration(milliseconds: 300),
-                  child: Center(
+                alignment: Alignment(-1, 0.5),
+                child: Padding(
+                  padding: const EdgeInsets.all(30.0),
+                  child: AnimatedOpacity(
+                    opacity: widget.isFocused ? 1 : 0.0,
+                    duration: const Duration(milliseconds: 300),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       spacing: 10,
                       children: [
                         if (widget.item.subtitle != null)
                           Text(
-                            widget.item.subtitle!,
+                            widget.item.subtitle!.toUpperCase(),
                             style: const TextStyle(
                               color: Colors.white70,
                               fontSize: 18,
-                              letterSpacing: 1.5,
+                              letterSpacing: 5.0,
                               wordSpacing: 3.0,
                             ),
                           ),
                         Text(
-                          widget.item.title,
+                          widget.item.title.toUpperCase(),
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 2.0,
+                            letterSpacing: 5.0,
                             wordSpacing: 4.0,
                           ),
                         ),
