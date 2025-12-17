@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:story_teller_nomad_landing_page/common/utils/email_util.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/custom_outline_button.dart';
+import 'package:story_teller_nomad_landing_page/common/widgets/main_logo.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_image/custom_cloud_image.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_video/custom_cloud_video.dart';
 import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_text.dart';
@@ -37,7 +38,10 @@ class LandingSection extends StatelessWidget {
           Positioned(
             top: 30,
             left: 30,
-            child: Text('LOGO'),
+            child: MainLogo(
+              darkMode: true,
+              redirectToHome: false,
+            ),
           ),
           Align(
             alignment: Alignment(0, 0.6),
