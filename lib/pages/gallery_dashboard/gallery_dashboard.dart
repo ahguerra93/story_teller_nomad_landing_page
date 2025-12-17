@@ -4,144 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/hamburger_menu.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/main_logo.dart';
 import 'package:story_teller_nomad_landing_page/config/responsiveness/breakpoints.dart';
-import 'package:story_teller_nomad_landing_page/pages/gallery_page/data/model/media_item.dart';
-import 'package:story_teller_nomad_landing_page/pages/gallery_page/widgets/gallery_cover.dart';
+import 'package:story_teller_nomad_landing_page/pages/gallery_dashboard/data/model/media_item.dart';
+import 'package:story_teller_nomad_landing_page/pages/gallery_dashboard/widgets/gallery_cover.dart';
 import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_widget.dart';
-
-class PhotosPage extends StatelessWidget {
-  PhotosPage({super.key});
-
-  List<MediaItem> _allCovers(bool isMobile) {
-    if (isMobile) {
-      return [
-        ...commercialCovers,
-        ...personalCovers,
-      ];
-    } else {
-      // Create intertwined list: commercial, personal, commercial, personal, etc.
-      final maxLength =
-          commercialCovers.length > personalCovers.length ? commercialCovers.length : personalCovers.length;
-
-      List<MediaItem> intertwinedList = [];
-
-      for (int i = 0; i < maxLength; i++) {
-        // Add commercial item or empty placeholder
-        if (i < commercialCovers.length) {
-          intertwinedList.add(commercialCovers[i]);
-        } else {
-          intertwinedList.add(MediaItem(id: '', title: ''));
-        }
-
-        // Add personal item or empty placeholder
-        if (i < personalCovers.length) {
-          intertwinedList.add(personalCovers[i]);
-        } else {
-          intertwinedList.add(MediaItem(id: '', title: ''));
-        }
-      }
-      return intertwinedList;
-    }
-  }
-
-  final List<MediaItem> commercialCovers = [
-    MediaItem(id: 'professional-1-cover_ydopyh', title: 'Bomberos Comunarios', subtitle: 'Unión Europea'),
-    MediaItem(
-      id: 'professional-2-cover_co0zjv',
-      title: 'Recolección de frutos del Bosque',
-      subtitle: 'Unión Europea',
-    ),
-    MediaItem(
-      id: 'professional-3-cover_xmujn3',
-      title: 'Catálogo 2024',
-      subtitle: 'Crillón Tours',
-    ),
-    MediaItem(
-      id: 'professional-4-cover_nzraex',
-      subtitle: 'Volver a vos',
-      title: 'Yoga Y Mindfulness',
-    ),
-    MediaItem(id: 'professional-4-cover_y2bi0x', title: 'Colección 2023', subtitle: 'Maxiking'),
-    MediaItem(id: 'professional-6-cover_eh09bp', title: 'Lanzamiento UMA Lluvia', subtitle: 'UMA Experience'),
-    MediaItem(id: 'professional-7-cover_houqta', title: 'Lanzamiento Gravel 2026', subtitle: 'Ruta de los Pistoleros'),
-  ];
-  final List<MediaItem> personalCovers = [
-    MediaItem(
-      id: 'personal-1-cover_qzlwog',
-      title: 'Barrenderos',
-    ),
-    MediaItem(
-      id: 'personal-2-cover_m6wvn9',
-      title: 'Bali',
-    ),
-    MediaItem(
-      id: 'personal-3-cover_x6lnyc',
-      title: 'Ñatitas',
-    ),
-    MediaItem(
-      id: 'personal-4-cover_uenf3f',
-      title: 'NK',
-    ),
-    MediaItem(
-      id: 'personal-5-cover_sabwyp',
-      title: 'Quinoa',
-    ),
-    MediaItem(
-      id: 'personal-6-cover_q0hqtu',
-      title: 'Chunchos',
-    ),
-    MediaItem(
-      id: 'personal-7-cover_ohxfpk',
-      title: 'Oruro',
-    ),
-    MediaItem(
-      id: 'personal-8-cover_rr9gjv',
-      title: 'Pujllay',
-    ),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: GalleryPage(
-        covers: _allCovers(MediaQuery.of(context).size.width < Breakpoints.tablet),
-      ),
-    );
-  }
-}
-
-class _Appbar extends StatelessWidget {
-  const _Appbar();
-
-  @override
-  Widget build(BuildContext context) {
-    final style = TextStyle(fontSize: 18, letterSpacing: 5, fontWeight: FontWeight.w500, color: Colors.black);
-    return Container(
-      height: 100,
-      color: Colors.white,
-      child: Row(
-        children: [
-          Expanded(
-            child: Center(
-              child: Text(
-                'COMMERCIAL',
-                style: style,
-              ),
-            ),
-          ),
-          Expanded(
-            child: Center(child: MainLogo(darkMode: false)),
-          ),
-          Expanded(
-              child: Center(
-                  child: Text(
-            'PERSONAL',
-            style: style,
-          ))),
-        ],
-      ),
-    );
-  }
-}
 
 class GalleryPage extends StatefulWidget {
   const GalleryPage({required this.covers, this.showAppBar = true, this.onSelected, super.key});
@@ -297,6 +162,40 @@ class _GalleryPageState extends State<GalleryPage> {
             child: MainLogo(darkMode: true),
           ),
       ],
+    );
+  }
+}
+
+class _Appbar extends StatelessWidget {
+  const _Appbar();
+
+  @override
+  Widget build(BuildContext context) {
+    final style = TextStyle(fontSize: 18, letterSpacing: 5, fontWeight: FontWeight.w500, color: Colors.black);
+    return Container(
+      height: 100,
+      color: Colors.white,
+      child: Row(
+        children: [
+          Expanded(
+            child: Center(
+              child: Text(
+                'COMMERCIAL',
+                style: style,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Center(child: MainLogo(darkMode: false)),
+          ),
+          Expanded(
+              child: Center(
+                  child: Text(
+            'PERSONAL',
+            style: style,
+          ))),
+        ],
+      ),
     );
   }
 }

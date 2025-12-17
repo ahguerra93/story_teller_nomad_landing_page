@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:story_teller_nomad_landing_page/pages/gallery_page/data/model/media_item.dart';
-import 'package:story_teller_nomad_landing_page/pages/gallery_page/photos_page.dart';
+import 'package:story_teller_nomad_landing_page/pages/gallery_dashboard/data/model/media_item.dart';
+import 'package:story_teller_nomad_landing_page/pages/gallery_dashboard/gallery_dashboard.dart';
 
 class VideosPage extends StatelessWidget {
   const VideosPage({super.key});
