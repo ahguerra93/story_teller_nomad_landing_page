@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:story_teller_nomad_landing_page/pages/photos_page/data/model/media_item.dart';
+import 'package:story_teller_nomad_landing_page/pages/gallery_page/data/model/media_item.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_image/custom_cloud_image.dart';
 
 class GalleryCover extends StatefulWidget {

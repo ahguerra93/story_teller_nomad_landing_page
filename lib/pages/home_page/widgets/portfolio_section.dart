@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:story_teller_nomad_landing_page/pages/gallery_page/gallery_page.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/widgets/animated_cover.dart';
 import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_widget.dart';
 
@@ -32,6 +31,9 @@ class PortfolioSection extends StatelessWidget {
               key: Key(_videosKeyLabel),
               path: _videosPath,
               title: _videosTitle,
+              onTap: () {
+                context.go('/video-gallery');
+              },
             ),
           ),
         ],
@@ -44,11 +46,7 @@ class PortfolioSection extends StatelessWidget {
               path: _photosPath,
               title: _photosTitle,
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => GalleryPage(),
-                    ));
+                context.go('/photo-gallery');
               },
             ),
           ),
@@ -57,6 +55,9 @@ class PortfolioSection extends StatelessWidget {
               key: Key(_videosKeyLabel),
               path: _videosPath,
               title: _videosTitle,
+              onTap: () {
+                context.go('/video-gallery');
+              },
             ),
           ),
         ],

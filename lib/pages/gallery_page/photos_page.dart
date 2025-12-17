@@ -4,73 +4,106 @@ import 'package:flutter/material.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/hamburger_menu.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/main_logo.dart';
 import 'package:story_teller_nomad_landing_page/config/responsiveness/breakpoints.dart';
-import 'package:story_teller_nomad_landing_page/pages/photos_page/data/model/media_item.dart';
-import 'package:story_teller_nomad_landing_page/pages/photos_page/widgets/gallery_cover.dart';
+import 'package:story_teller_nomad_landing_page/pages/gallery_page/data/model/media_item.dart';
+import 'package:story_teller_nomad_landing_page/pages/gallery_page/widgets/gallery_cover.dart';
 import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_widget.dart';
 
 class PhotosPage extends StatelessWidget {
-  const PhotosPage({super.key});
+  PhotosPage({super.key});
+
+  List<MediaItem> _allCovers(bool isMobile) {
+    if (isMobile) {
+      return [
+        ...commercialCovers,
+        ...personalCovers,
+      ];
+    } else {
+      // Create intertwined list: commercial, personal, commercial, personal, etc.
+      final maxLength =
+          commercialCovers.length > personalCovers.length ? commercialCovers.length : personalCovers.length;
+
+      List<MediaItem> intertwinedList = [];
+
+      for (int i = 0; i < maxLength; i++) {
+        // Add commercial item or empty placeholder
+        if (i < commercialCovers.length) {
+          intertwinedList.add(commercialCovers[i]);
+        } else {
+          intertwinedList.add(MediaItem(id: '', title: ''));
+        }
+
+        // Add personal item or empty placeholder
+        if (i < personalCovers.length) {
+          intertwinedList.add(personalCovers[i]);
+        } else {
+          intertwinedList.add(MediaItem(id: '', title: ''));
+        }
+      }
+      return intertwinedList;
+    }
+  }
+
+  final List<MediaItem> commercialCovers = [
+    MediaItem(id: 'professional-1-cover_ydopyh', title: 'Bomberos Comunarios', subtitle: 'Unión Europea'),
+    MediaItem(
+      id: 'professional-2-cover_co0zjv',
+      title: 'Recolección de frutos del Bosque',
+      subtitle: 'Unión Europea',
+    ),
+    MediaItem(
+      id: 'professional-3-cover_xmujn3',
+      title: 'Catálogo 2024',
+      subtitle: 'Crillón Tours',
+    ),
+    MediaItem(
+      id: 'professional-4-cover_nzraex',
+      subtitle: 'Volver a vos',
+      title: 'Yoga Y Mindfulness',
+    ),
+    MediaItem(id: 'professional-4-cover_y2bi0x', title: 'Colección 2023', subtitle: 'Maxiking'),
+    MediaItem(id: 'professional-6-cover_eh09bp', title: 'Lanzamiento UMA Lluvia', subtitle: 'UMA Experience'),
+    MediaItem(id: 'professional-7-cover_houqta', title: 'Lanzamiento Gravel 2026', subtitle: 'Ruta de los Pistoleros'),
+  ];
+  final List<MediaItem> personalCovers = [
+    MediaItem(
+      id: 'personal-1-cover_qzlwog',
+      title: 'Barrenderos',
+    ),
+    MediaItem(
+      id: 'personal-2-cover_m6wvn9',
+      title: 'Bali',
+    ),
+    MediaItem(
+      id: 'personal-3-cover_x6lnyc',
+      title: 'Ñatitas',
+    ),
+    MediaItem(
+      id: 'personal-4-cover_uenf3f',
+      title: 'NK',
+    ),
+    MediaItem(
+      id: 'personal-5-cover_sabwyp',
+      title: 'Quinoa',
+    ),
+    MediaItem(
+      id: 'personal-6-cover_q0hqtu',
+      title: 'Chunchos',
+    ),
+    MediaItem(
+      id: 'personal-7-cover_ohxfpk',
+      title: 'Oruro',
+    ),
+    MediaItem(
+      id: 'personal-8-cover_rr9gjv',
+      title: 'Pujllay',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GalleryPage(
-        commercialCovers: [
-          MediaItem(id: 'professional-1-cover_ydopyh', title: 'Bomberos Comunarios', subtitle: 'Unión Europea'),
-          MediaItem(
-            id: 'professional-2-cover_co0zjv',
-            title: 'Recolección de frutos del Bosque',
-            subtitle: 'Unión Europea',
-          ),
-          MediaItem(
-            id: 'professional-3-cover_xmujn3',
-            title: 'Catálogo 2024',
-            subtitle: 'Crillón Tours',
-          ),
-          MediaItem(
-            id: 'professional-4-cover_nzraex',
-            subtitle: 'Volver a vos',
-            title: 'Yoga Y Mindfulness',
-          ),
-          MediaItem(id: 'professional-4-cover_y2bi0x', title: 'Colección 2023', subtitle: 'Maxiking'),
-          MediaItem(id: 'professional-6-cover_eh09bp', title: 'Lanzamiento UMA Lluvia', subtitle: 'UMA Experience'),
-          MediaItem(
-              id: 'professional-7-cover_houqta', title: 'Lanzamiento Gravel 2026', subtitle: 'Ruta de los Pistoleros'),
-        ],
-        personalCovers: [
-          MediaItem(
-            id: 'personal-1-cover_qzlwog',
-            title: 'Barrenderos',
-          ),
-          MediaItem(
-            id: 'personal-2-cover_m6wvn9',
-            title: 'Bali',
-          ),
-          MediaItem(
-            id: 'personal-3-cover_x6lnyc',
-            title: 'Ñatitas',
-          ),
-          MediaItem(
-            id: 'personal-4-cover_uenf3f',
-            title: 'NK',
-          ),
-          MediaItem(
-            id: 'personal-5-cover_sabwyp',
-            title: 'Quinoa',
-          ),
-          MediaItem(
-            id: 'personal-6-cover_q0hqtu',
-            title: 'Chunchos',
-          ),
-          MediaItem(
-            id: 'personal-7-cover_ohxfpk',
-            title: 'Oruro',
-          ),
-          MediaItem(
-            id: 'personal-8-cover_rr9gjv',
-            title: 'Pujllay',
-          ),
-        ],
+        covers: _allCovers(MediaQuery.of(context).size.width < Breakpoints.tablet),
       ),
     );
   }
@@ -111,10 +144,11 @@ class _Appbar extends StatelessWidget {
 }
 
 class GalleryPage extends StatefulWidget {
-  const GalleryPage({required this.commercialCovers, required this.personalCovers, this.onSelected, super.key});
-  final List<MediaItem> commercialCovers;
-  final List<MediaItem> personalCovers;
+  const GalleryPage({required this.covers, this.showAppBar = true, this.onSelected, super.key});
+
+  final List<MediaItem> covers;
   final void Function(MediaItem item)? onSelected;
+  final bool showAppBar;
 
   @override
   State<GalleryPage> createState() => _GalleryPageState();
@@ -152,64 +186,31 @@ class _GalleryPageState extends State<GalleryPage> {
     }
   }
 
-  List<MediaItem> _allCovers(bool isMobile) {
-    if (isMobile) {
-      return [
-        ...widget.commercialCovers,
-        ...widget.personalCovers,
-      ];
-    } else {
-      // Create intertwined list: commercial, personal, commercial, personal, etc.
-      final maxLength = widget.commercialCovers.length > widget.personalCovers.length
-          ? widget.commercialCovers.length
-          : widget.personalCovers.length;
-
-      List<MediaItem> intertwinedList = [];
-
-      for (int i = 0; i < maxLength; i++) {
-        // Add commercial item or empty placeholder
-        if (i < widget.commercialCovers.length) {
-          intertwinedList.add(widget.commercialCovers[i]);
-        } else {
-          intertwinedList.add(MediaItem(id: '', title: ''));
-        }
-
-        // Add personal item or empty placeholder
-        if (i < widget.personalCovers.length) {
-          intertwinedList.add(widget.personalCovers[i]);
-        } else {
-          intertwinedList.add(MediaItem(id: '', title: ''));
-        }
-      }
-
-      return intertwinedList;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < Breakpoints.tablet;
-    final coverUrls = _allCovers(isMobile);
+
     return Stack(
       children: [
         ResponsiveLayout(
           desktop: CustomScrollView(
             controller: _scrollController,
             slivers: [
-              SliverAppBar(
-                expandedHeight: _appBarExpandedHeight,
-                floating: true,
-                snap: true,
-                backgroundColor: Colors.white,
-                elevation: 0,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: _Appbar(),
+              if (widget.showAppBar)
+                SliverAppBar(
+                  expandedHeight: _appBarExpandedHeight,
+                  floating: true,
+                  snap: true,
+                  backgroundColor: Colors.white,
+                  elevation: 0,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: _Appbar(),
+                  ),
                 ),
-              ),
               SliverGrid(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    final item = coverUrls[index];
+                    final item = widget.covers[index];
                     // Return empty container for items with empty id
                     if (item.id.isEmpty) {
                       return Container();
@@ -229,7 +230,7 @@ class _GalleryPageState extends State<GalleryPage> {
                       },
                     );
                   },
-                  childCount: coverUrls.length,
+                  childCount: widget.covers.length,
                 ),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -254,11 +255,11 @@ class _GalleryPageState extends State<GalleryPage> {
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => GalleryCover(
-                    item: coverUrls[index],
-                    isFocused: _selectedPhotoId == coverUrls[index].id,
+                    item: widget.covers[index],
+                    isFocused: _selectedPhotoId == widget.covers[index].id,
                     onFocused: () {
                       setState(() {
-                        _selectedPhotoId = coverUrls[index].id;
+                        _selectedPhotoId = widget.covers[index].id;
                       });
                     },
                     onExit: () {
@@ -267,7 +268,7 @@ class _GalleryPageState extends State<GalleryPage> {
                       });
                     },
                   ),
-                  childCount: coverUrls.length,
+                  childCount: widget.covers.length,
                 ),
               ),
             ],
@@ -277,11 +278,19 @@ class _GalleryPageState extends State<GalleryPage> {
           right: 30,
           top: 30,
           child: HamburgerMenu(
-            darkMode: isMobile ? true : !_isAppBarVisible,
+            darkMode: isMobile
+                ? true
+                : !widget.showAppBar
+                    ? true
+                    : !_isAppBarVisible,
             homeOptionEnabled: true,
           ),
         ),
-        if (isMobile ? true : !_isAppBarVisible)
+        if (isMobile
+            ? true
+            : !widget.showAppBar
+                ? true
+                : !_isAppBarVisible)
           Positioned(
             left: 30,
             top: 30,

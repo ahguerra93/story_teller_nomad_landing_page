@@ -81,7 +81,7 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
                     text: 'VIDEO',
                     color: color,
                     onTap: () {
-                      // Handle Video navigation
+                      context.go('/video-gallery');
                       log('Video tapped');
                     },
                   ),
