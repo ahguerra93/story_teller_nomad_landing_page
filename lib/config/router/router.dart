@@ -1,8 +1,8 @@
 import 'package:go_router/go_router.dart';
 import 'package:story_teller_nomad_landing_page/pages/contact_page/contact_page.dart';
-import 'package:story_teller_nomad_landing_page/pages/gallery_page/videos_page.dart';
+import 'package:story_teller_nomad_landing_page/pages/gallery_dashboard/photos_page.dart';
+import 'package:story_teller_nomad_landing_page/pages/gallery_dashboard/videos_page.dart';
 import 'package:story_teller_nomad_landing_page/pages/home_page/home_page.dart';
-import 'package:story_teller_nomad_landing_page/pages/gallery_page/photos_page.dart';
 
 // GoRouter configuration
 final router = GoRouter(
