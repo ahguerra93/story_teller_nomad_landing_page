@@ -5,19 +5,14 @@ import 'package:get_it/get_it.dart';
 import 'package:story_teller_nomad_landing_page/config/models/repo_config/repo_config.dart';
 import 'package:story_teller_nomad_landing_page/config/router/router.dart';
 import 'package:story_teller_nomad_landing_page/firebase_options.dart';
+import 'package:story_teller_nomad_landing_page/injection.dart';
 import 'package:story_teller_nomad_landing_page/theme/theme.dart';
 
 void main() async {
-  final getIt = GetIt.instance;
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  getIt.registerSingleton<RepoConfig>(
-    RepoConfig(
-      cloudName: 'dp1e3otpc',
-      apiKey: '329245894549578',
-    ),
-  );
+  initializeDependencies();
   usePathUrlStrategy();
 
   runApp(const MyApp());

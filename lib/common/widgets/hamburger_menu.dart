@@ -2,14 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:story_teller_nomad_landing_page/config/router/routes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HamburgerMenu extends StatefulWidget {
-  const HamburgerMenu({
-    super.key,
-    required this.darkMode,
-    this.homeOptionEnabled = false,
-  });
+  const HamburgerMenu({super.key, required this.darkMode, this.homeOptionEnabled = false});
 
   final bool darkMode;
   final bool homeOptionEnabled;
@@ -33,11 +30,7 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
               _isOpen = !_isOpen;
             });
           },
-          child: Icon(
-            _isOpen ? Icons.close : Icons.menu,
-            color: color,
-            size: 30,
-          ),
+          child: Icon(_isOpen ? Icons.close : Icons.menu, color: color, size: 30),
         ),
         AnimatedContainer(
           duration: Duration(milliseconds: 300),
@@ -62,7 +55,7 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
                       color: color,
                       onTap: () {
                         // Handle Photography navigation
-                        context.go('/');
+                        context.go(AppRoutes.home.path);
                       },
                     ),
                     Divider(color: color.withOpacity(0.3), height: 1),
@@ -72,7 +65,7 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
                     color: color,
                     onTap: () {
                       // Handle Photography navigation
-                      context.go('/photo-gallery');
+                      context.go(AppRoutes.photos.path);
                       log('Photography tapped');
                     },
                   ),
@@ -81,7 +74,7 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
                     text: 'VIDEO',
                     color: color,
                     onTap: () {
-                      context.go('/video-gallery');
+                      context.go(AppRoutes.videos.path);
                       log('Video tapped');
                     },
                   ),
@@ -90,8 +83,11 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
                     text: 'CONTACT',
                     color: color,
                     onTap: () {
-                      launchUrl(Uri.parse(
-                          'mailto:contact@storytellernomad.com?subject=Contact&body=Hi!+I+would+like+to+get+in+touch+with+you.'));
+                      launchUrl(
+                        Uri.parse(
+                          'mailto:contact@storytellernomad.com?subject=Contact&body=Hi!+I+would+like+to+get+in+touch+with+you.',
+                        ),
+                      );
                       // context.go('/contact');
                     },
                   ),
@@ -106,11 +102,7 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
 }
 
 class _MenuItem extends StatelessWidget {
-  const _MenuItem({
-    required this.text,
-    required this.color,
-    required this.onTap,
-  });
+  const _MenuItem({required this.text, required this.color, required this.onTap});
 
   final String text;
   final Color color;
@@ -126,11 +118,7 @@ class _MenuItem extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: Text(
             text,
-            style: TextStyle(
-              color: color,
-              fontSize: 14,
-              letterSpacing: 3.0,
-            ),
+            style: TextStyle(color: color, fontSize: 14, letterSpacing: 3.0),
             textAlign: TextAlign.center,
           ),
         ),

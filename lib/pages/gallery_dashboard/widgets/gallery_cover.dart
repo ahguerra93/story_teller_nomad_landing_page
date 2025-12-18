@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:story_teller_nomad_landing_page/pages/gallery_dashboard/data/model/media_item.dart';
+import 'package:story_teller_nomad_landing_page/pages/media_gallery/domain/models/media_item/media_item.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_image/custom_cloud_image.dart';
 
 class GalleryCover extends StatefulWidget {
@@ -9,12 +9,14 @@ class GalleryCover extends StatefulWidget {
     required this.isFocused,
     required this.onFocused,
     this.onExit,
+    this.onPressed,
   });
 
   final MediaItem item;
   final bool isFocused;
   final void Function()? onFocused;
   final void Function()? onExit;
+  final void Function()? onPressed;
 
   @override
   State<GalleryCover> createState() => _GalleryCoverState();
@@ -36,13 +38,11 @@ class _GalleryCoverState extends State<GalleryCover> {
           onLongPress: () {
             widget.onFocused?.call();
           },
+          onTap: widget.onPressed,
           child: Stack(
             children: [
               Positioned.fill(
-                child: CustomCloudImage(
-                  id: widget.item.id,
-                  fit: BoxFit.cover,
-                ),
+                child: CustomCloudImage(id: widget.item.id, fit: BoxFit.cover),
               ),
               Positioned.fill(
                 child: AnimatedOpacity(

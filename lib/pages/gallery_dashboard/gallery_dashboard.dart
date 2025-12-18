@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/hamburger_menu.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/main_logo.dart';
 import 'package:story_teller_nomad_landing_page/config/responsiveness/breakpoints.dart';
-import 'package:story_teller_nomad_landing_page/pages/gallery_dashboard/data/model/media_item.dart';
 import 'package:story_teller_nomad_landing_page/pages/gallery_dashboard/widgets/gallery_cover.dart';
+import 'package:story_teller_nomad_landing_page/pages/media_gallery/domain/models/media_item/media_item.dart';
 import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_widget.dart';
 
 class GalleryPage extends StatefulWidget {
@@ -68,39 +68,32 @@ class _GalleryPageState extends State<GalleryPage> {
                   snap: true,
                   backgroundColor: Colors.white,
                   elevation: 0,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: _Appbar(),
-                  ),
+                  flexibleSpace: FlexibleSpaceBar(background: _Appbar()),
                 ),
               SliverGrid(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final item = widget.covers[index];
-                    // Return empty container for items with empty id
-                    if (item.id.isEmpty) {
-                      return Container();
-                    }
-                    return GalleryCover(
-                      item: item,
-                      isFocused: _selectedPhotoId == item.id,
-                      onFocused: () {
-                        setState(() {
-                          _selectedPhotoId = item.id;
-                        });
-                      },
-                      onExit: () {
-                        setState(() {
-                          _selectedPhotoId = null;
-                        });
-                      },
-                    );
-                  },
-                  childCount: widget.covers.length,
-                ),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 4 / 3,
-                ),
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final item = widget.covers[index];
+                  // Return empty container for items with empty id
+                  if (item.id.isEmpty) {
+                    return Container();
+                  }
+                  return GalleryCover(
+                    item: item,
+                    isFocused: _selectedPhotoId == item.id,
+                    onPressed: () => widget.onSelected?.call(item),
+                    onFocused: () {
+                      setState(() {
+                        _selectedPhotoId = item.id;
+                      });
+                    },
+                    onExit: () {
+                      setState(() {
+                        _selectedPhotoId = null;
+                      });
+                    },
+                  );
+                }, childCount: widget.covers.length),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 4 / 3),
               ),
             ],
           ),
@@ -118,13 +111,18 @@ class _GalleryPageState extends State<GalleryPage> {
               //   ),
               // ),
               SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) => GalleryCover(
-                    item: widget.covers[index],
-                    isFocused: _selectedPhotoId == widget.covers[index].id,
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  final item = widget.covers[index];
+                  if (item.id.isEmpty) {
+                    return Container();
+                  }
+                  return GalleryCover(
+                    item: item,
+                    isFocused: _selectedPhotoId == item.id,
+                    onPressed: () => widget.onSelected?.call(item),
                     onFocused: () {
                       setState(() {
-                        _selectedPhotoId = widget.covers[index].id;
+                        _selectedPhotoId = item.id;
                       });
                     },
                     onExit: () {
@@ -132,9 +130,8 @@ class _GalleryPageState extends State<GalleryPage> {
                         _selectedPhotoId = null;
                       });
                     },
-                  ),
-                  childCount: widget.covers.length,
-                ),
+                  );
+                }, childCount: widget.covers.length),
               ),
             ],
           ),
@@ -146,21 +143,17 @@ class _GalleryPageState extends State<GalleryPage> {
             darkMode: isMobile
                 ? true
                 : !widget.showAppBar
-                    ? true
-                    : !_isAppBarVisible,
+                ? true
+                : !_isAppBarVisible,
             homeOptionEnabled: true,
           ),
         ),
         if (isMobile
             ? true
             : !widget.showAppBar
-                ? true
-                : !_isAppBarVisible)
-          Positioned(
-            left: 30,
-            top: 30,
-            child: MainLogo(darkMode: true),
-          ),
+            ? true
+            : !_isAppBarVisible)
+          Positioned(left: 30, top: 30, child: MainLogo(darkMode: true)),
       ],
     );
   }
@@ -178,22 +171,12 @@ class _Appbar extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Center(
-              child: Text(
-                'COMMERCIAL',
-                style: style,
-              ),
-            ),
+            child: Center(child: Text('COMMERCIAL', style: style)),
           ),
+          Expanded(child: Center(child: MainLogo(darkMode: false))),
           Expanded(
-            child: Center(child: MainLogo(darkMode: false)),
+            child: Center(child: Text('PERSONAL', style: style)),
           ),
-          Expanded(
-              child: Center(
-                  child: Text(
-            'PERSONAL',
-            style: style,
-          ))),
         ],
       ),
     );
