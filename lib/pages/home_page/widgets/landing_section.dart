@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:story_teller_nomad_landing_page/common/utils/email_util.dart';
+import 'package:story_teller_nomad_landing_page/common/widgets/custom_circular_progress_indicator.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/custom_outline_button.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/main_logo.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_image/custom_cloud_image.dart';
@@ -19,30 +20,17 @@ class LandingSection extends StatelessWidget {
           Positioned.fill(
             child: ImageFiltered(
               imageFilter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-              child: CustomCloudImage(
-                id: 'video-cover-loader_wdreyo',
-                fit: BoxFit.cover,
-              ),
+              child: CustomCloudImage(id: 'video-cover-loader_wdreyo', fit: BoxFit.cover),
             ),
           ),
           Positioned.fill(
-              child: CustomCloudVideo(
-            id: 'video-cover_fbeun9',
-            key: Key('Home-backgroundImage'),
-            placeholder: Center(
-              child: CircularProgressIndicator(
-                color: Colors.white.withAlpha(150),
-              ),
-            ),
-          )),
-          Positioned(
-            top: 30,
-            left: 30,
-            child: MainLogo(
-              darkMode: true,
-              redirectToHome: false,
+            child: CustomCloudVideo(
+              id: 'video-cover_fbeun9',
+              key: Key('Home-backgroundImage'),
+              placeholder: Center(child: CustomCircularProgressIndicator()),
             ),
           ),
+          Positioned(top: 30, left: 30, child: MainLogo(darkMode: true, redirectToHome: false)),
           Align(
             alignment: Alignment(0, 0.6),
             child: Padding(
@@ -54,18 +42,15 @@ class LandingSection extends StatelessWidget {
                   ResponsiveText(
                     'PHOTOGRAPHER | FILMMAKER | FPV PILOT',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      letterSpacing: 5.0,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 22, letterSpacing: 5.0),
                   ),
                   CustomOutlineButton(
-                      text: 'CONTACT',
-                      darkMode: true,
-                      onPressed: () async {
-                        EmailUtil.launchEmailClient();
-                      }),
+                    text: 'CONTACT',
+                    darkMode: true,
+                    onPressed: () async {
+                      EmailUtil.launchEmailClient();
+                    },
+                  ),
                 ],
               ),
             ),
