@@ -68,6 +68,7 @@ class _ContentState extends State<_Content> {
                         id: id,
                         placeHolder: Center(child: CircularProgressIndicator(color: Colors.white)),
                         fit: BoxFit.contain,
+                        fullQuality: true,
                       )
                     : Text('In progress');
               },

@@ -42,7 +42,7 @@ class _GalleryCoverState extends State<GalleryCover> {
           child: Stack(
             children: [
               Positioned.fill(
-                child: CustomCloudImage(id: widget.item.id, fit: BoxFit.cover),
+                child: CustomCloudImage(id: widget.item.id, fit: BoxFit.cover, fullQuality: false),
               ),
               Positioned.fill(
                 child: AnimatedOpacity(
