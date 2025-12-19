@@ -65,11 +65,15 @@ class _ContentState extends State<_Content> {
               itemBuilder: (context, index) {
                 final id = widget.mediaItem.children[index];
                 return widget.mediaItem.type == MediaType.photo
-                    ? CustomCloudImage(
-                        id: id,
-                        placeHolder: Center(child: CustomCircularProgressIndicator()),
-                        fit: BoxFit.contain,
-                        fullQuality: true,
+                    ? InteractiveViewer(
+                        minScale: 0.5,
+                        maxScale: 5.0,
+                        child: CustomCloudImage(
+                          id: id,
+                          placeHolder: Center(child: CustomCircularProgressIndicator()),
+                          fit: BoxFit.contain,
+                          fullQuality: true,
+                        ),
                       )
                     : Text('In progress');
               },
