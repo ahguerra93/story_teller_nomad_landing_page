@@ -1,6 +1,6 @@
 # story_teller_nomad_landing_page
 
-A new Flutter project.
+Photographer | Filmmaker | FPV Pilot
 
 ## Getting Started
 
