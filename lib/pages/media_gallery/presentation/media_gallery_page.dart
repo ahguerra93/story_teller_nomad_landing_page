@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:story_teller_nomad_landing_page/common/widgets/custom_circular_progress_indicator.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/hamburger_menu.dart';
 import 'package:story_teller_nomad_landing_page/pages/media_gallery/domain/models/media_item/media_item.dart';
 import 'package:story_teller_nomad_landing_page/pages/media_gallery/domain/models/media_item/media_type.dart';
@@ -29,7 +30,7 @@ class _Widget extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           body: state.when(
-            loading: () => Center(key: Key('Loading_media_gallery_page'), child: CircularProgressIndicator()),
+            loading: () => Center(key: Key('Loading_media_gallery_page'), child: CustomCircularProgressIndicator()),
             error: (message) => Center(key: Key('Error_media_gallery_page'), child: Text('Error: $message')),
             success: (mediaItem) => _Content(mediaItem: mediaItem),
           ),
@@ -66,8 +67,9 @@ class _ContentState extends State<_Content> {
                 return widget.mediaItem.type == MediaType.photo
                     ? CustomCloudImage(
                         id: id,
-                        placeHolder: Center(child: CircularProgressIndicator(color: Colors.white)),
+                        placeHolder: Center(child: CustomCircularProgressIndicator()),
                         fit: BoxFit.contain,
+                        fullQuality: true,
                       )
                     : Text('In progress');
               },
