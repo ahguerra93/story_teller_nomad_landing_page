@@ -3,12 +3,7 @@ import 'package:story_teller_nomad_landing_page/widgets/animated/zoom_on_hover.d
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_image/custom_cloud_image.dart';
 
 class AnimatedCover extends StatefulWidget {
-  const AnimatedCover({
-    required this.path,
-    required this.title,
-    this.onTap,
-    super.key,
-  });
+  const AnimatedCover({required this.path, required this.title, this.onTap, super.key});
   final String path;
   final String title;
   final void Function()? onTap;
@@ -22,39 +17,23 @@ class _AnimatedCoverState extends State<AnimatedCover> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Positioned.fill(
-          child: ZoomOnHover(
-            onTap: widget.onTap,
-            child: LayoutBuilder(builder: (context, constraints) {
-              final height = constraints.maxHeight;
-              final width = constraints.maxWidth;
-              return AspectRatio(
+    return ZoomOnHover(
+      onTap: widget.onTap,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final height = constraints.maxHeight;
+          final width = constraints.maxWidth;
+          return Stack(
+            children: [
+              AspectRatio(
                 aspectRatio: width / height,
-                child: CustomCloudImage(
-                  id: widget.path,
-                  fit: BoxFit.cover,
-                  alignment: Alignment.center,
-                ),
-              );
-            }),
-          ),
-        ),
-        // Positioned.fill(
-        //   child: AnimatedContainer(
-        //     key: Key('cover-key'),
-        //     duration: Duration(milliseconds: 300),
-        //     color: isHovered ? Colors.black.withAlpha(125) : null,
-        //   ),
-        // ),
-        Center(
-          child: Text(
-            widget.title,
-            style: TextStyle(fontSize: 28, wordSpacing: 5.0, letterSpacing: 5.0),
-          ),
-        )
-      ],
+                child: CustomCloudImage(id: widget.path, fit: BoxFit.cover, alignment: Alignment.center),
+              ),
+              Center(child: Text(widget.title, style: TextStyle(fontSize: 28, wordSpacing: 5.0, letterSpacing: 5.0))),
+            ],
+          );
+        },
+      ),
     );
   }
 }

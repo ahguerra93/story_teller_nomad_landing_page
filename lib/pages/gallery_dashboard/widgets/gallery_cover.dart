@@ -26,7 +26,7 @@ class _GalleryCoverState extends State<GalleryCover> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 4 / 3,
+      aspectRatio: 800 / 400,
       child: MouseRegion(
         onEnter: (_) {
           widget.onFocused?.call();

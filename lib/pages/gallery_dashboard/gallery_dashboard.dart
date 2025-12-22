@@ -93,7 +93,7 @@ class _GalleryPageState extends State<GalleryPage> {
                     },
                   );
                 }, childCount: widget.covers.length),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 4 / 3),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 800 / 400),
               ),
             ],
           ),
