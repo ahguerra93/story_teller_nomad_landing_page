@@ -4,6 +4,7 @@ import 'package:story_teller_nomad_landing_page/common/utils/email_util.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/custom_circular_progress_indicator.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/custom_outline_button.dart';
 import 'package:story_teller_nomad_landing_page/common/widgets/main_logo.dart';
+import 'package:story_teller_nomad_landing_page/config/responsiveness/breakpoints.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_image/custom_cloud_image.dart';
 import 'package:story_teller_nomad_landing_page/widgets/custom_cloud_video/custom_cloud_video.dart';
 import 'package:story_teller_nomad_landing_page/widgets/responsive/responsive_text.dart';
@@ -13,6 +14,7 @@ class LandingSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mobile = MediaQuery.of(context).size.width < Breakpoints.tablet;
     return Container(
       color: Colors.black,
       child: Stack(
@@ -30,7 +32,11 @@ class LandingSection extends StatelessWidget {
               placeholder: Center(child: CustomCircularProgressIndicator()),
             ),
           ),
-          Positioned(top: 30, left: 30, child: MainLogo(darkMode: true, redirectToHome: false)),
+          Positioned(
+            top: mobile ? 15 : 30,
+            left: 30,
+            child: MainLogo(darkMode: true, redirectToHome: false, height: mobile ? 50 : 70),
+          ),
           Align(
             alignment: Alignment(0, 0.6),
             child: Padding(

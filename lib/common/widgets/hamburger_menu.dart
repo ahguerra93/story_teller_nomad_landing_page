@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:story_teller_nomad_landing_page/config/responsiveness/breakpoints.dart';
 import 'package:story_teller_nomad_landing_page/config/router/routes.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -21,6 +22,7 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
   Widget build(BuildContext context) {
     final color = widget.darkMode ? Colors.white : Colors.black;
     final backgroundColor = widget.darkMode ? Colors.black : Colors.white;
+    final mobile = MediaQuery.of(context).size.width < Breakpoints.tablet;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
@@ -30,14 +32,14 @@ class _HamburgerMenuState extends State<HamburgerMenu> {
               _isOpen = !_isOpen;
             });
           },
-          child: Icon(_isOpen ? Icons.close : Icons.menu, color: color, size: 30),
+          child: Icon(_isOpen ? Icons.close : Icons.menu, color: color, size: mobile ? 30 : 40),
         ),
         AnimatedContainer(
           duration: Duration(milliseconds: 300),
           curve: Curves.easeInOutCubic,
           height: _isOpen ? 160 : 0,
           width: _isOpen ? 200 : 0,
-          margin: EdgeInsets.only(top: 10),
+
           child: AnimatedOpacity(
             duration: Duration(milliseconds: 300),
             opacity: _isOpen ? 1.0 : 0.0,

@@ -51,6 +51,7 @@ class _Content extends StatefulWidget {
 class _ContentState extends State<_Content> {
   final PageController _pageController = PageController();
   int index = 0;
+  final double appbarOffset = 80.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,14 +66,17 @@ class _ContentState extends State<_Content> {
               itemBuilder: (context, index) {
                 final id = widget.mediaItem.children[index];
                 return widget.mediaItem.type == MediaType.photo
-                    ? InteractiveViewer(
-                        minScale: 0.5,
-                        maxScale: 5.0,
-                        child: CustomCloudImage(
-                          id: id,
-                          placeHolder: Center(child: CustomCircularProgressIndicator()),
-                          fit: BoxFit.contain,
-                          fullQuality: true,
+                    ? Padding(
+                        padding: EdgeInsets.only(top: appbarOffset),
+                        child: InteractiveViewer(
+                          minScale: 0.5,
+                          maxScale: 5.0,
+                          child: CustomCloudImage(
+                            id: id,
+                            placeHolder: Center(child: CustomCircularProgressIndicator()),
+                            fit: BoxFit.fitHeight,
+                            fullQuality: true,
+                          ),
                         ),
                       )
                     : Text('In progress');

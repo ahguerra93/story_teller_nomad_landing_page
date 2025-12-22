@@ -22,6 +22,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final mobile = MediaQuery.of(context).size.width < Breakpoints.tablet;
     final margin = mobile ? 15.0 : 30.0;
+    final double extraMargin = 10;
     final darkMode = index != 1;
     final color = darkMode
         ? Colors.white
@@ -37,9 +38,7 @@ class _HomePageState extends State<HomePage> {
               scaleCurve: Curves.easeInOutCubic,
               animationDuration: Duration(milliseconds: 800),
               pages: [
-                LandingSection(
-                  key: Key('Landind-section'),
-                ),
+                LandingSection(key: Key('Landind-section')),
                 ServicesSection(),
                 PortfolioSection(),
               ],
@@ -67,37 +66,28 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Positioned(
-            top: margin,
+            top: margin + extraMargin,
             right: margin,
-            child: HamburgerMenu(
-              darkMode: darkMode,
-            ),
+            child: HamburgerMenu(darkMode: darkMode),
           ),
           Positioned(
             bottom: margin,
             left: margin,
-            child: Row(spacing: 5, children: [
-              ResponsiveText(
-                '©',
-                style: TextStyle(
-                  color: color,
-                  fontSize: 25,
-                  wordSpacing: 3.0,
-                  letterSpacing: 3.0,
+            child: Row(
+              spacing: 5,
+              children: [
+                ResponsiveText(
+                  '©',
+                  style: TextStyle(color: color, fontSize: 25, wordSpacing: 3.0, letterSpacing: 3.0),
+                  mobileFontSize: 15,
                 ),
-                mobileFontSize: 15,
-              ),
-              ResponsiveText(
-                'Storytellernomad',
-                style: TextStyle(
-                  color: color,
-                  fontSize: 18,
-                  wordSpacing: 3.0,
-                  letterSpacing: 3.0,
+                ResponsiveText(
+                  'Storytellernomad',
+                  style: TextStyle(color: color, fontSize: 18, wordSpacing: 3.0, letterSpacing: 3.0),
+                  mobileFontSize: 10,
                 ),
-                mobileFontSize: 10,
-              ),
-            ]),
+              ],
+            ),
           ),
           Positioned(
             bottom: margin,
@@ -146,12 +136,7 @@ class PaginationDotsSection extends StatelessWidget {
             darkMode: darkMode,
           ),
           SizedBox(height: 20),
-          PageDotWidget(
-            onTap: () => onDotTapped(2),
-            active: currentIndex == 2,
-            mobile: mobile,
-            darkMode: darkMode,
-          ),
+          PageDotWidget(onTap: () => onDotTapped(2), active: currentIndex == 2, mobile: mobile, darkMode: darkMode),
         ],
       ),
     );
