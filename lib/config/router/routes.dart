@@ -3,7 +3,8 @@ enum AppRoutes {
   contact('/contact'),
   photos('/photos'),
   videos('/videos'),
-  mediaGallery('/media-gallery');
+  mediaGallery('/media-gallery'),
+  singleMediaGallery('/single-media-gallery');
 
   final String path;
 

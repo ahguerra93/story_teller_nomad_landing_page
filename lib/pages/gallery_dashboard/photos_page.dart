@@ -30,7 +30,7 @@ class _Widget extends StatelessWidget {
               loading: () => Center(key: Key('Loading_photos_page'), child: CustomCircularProgressIndicator()),
               success: (photoCollection) => GalleryPage(
                 covers: photoCollection.intertwined,
-                onSelected: (item) => context.go('${AppRoutes.mediaGallery.path}?type=photo&id=${item.id}'),
+                onSelected: (item, index) => context.go('${AppRoutes.mediaGallery.path}?type=photo&id=${item.id}'),
               ),
             ),
           );

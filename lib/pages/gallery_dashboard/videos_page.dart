@@ -28,7 +28,7 @@ class _Widget extends StatelessWidget {
             loading: () => Center(key: Key('Loading_videos_page'), child: CustomCircularProgressIndicator()),
             success: (videoCollection) => GalleryPage(
               covers: videoCollection.videos,
-              onSelected: (item) => context.go('${AppRoutes.mediaGallery.path}?type=video&id=${item.id}'),
+              onSelected: (item, index) => context.go('${AppRoutes.singleMediaGallery.path}?type=video&index=$index'),
             ),
           );
         },
