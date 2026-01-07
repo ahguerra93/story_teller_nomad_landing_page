@@ -12,7 +12,7 @@ class GalleryPage extends StatefulWidget {
   const GalleryPage({required this.covers, this.showAppBar = true, this.onSelected, super.key});
 
   final List<MediaItem> covers;
-  final void Function(MediaItem item)? onSelected;
+  final void Function(MediaItem item, int index)? onSelected;
   final bool showAppBar;
 
   @override
@@ -80,7 +80,7 @@ class _GalleryPageState extends State<GalleryPage> {
                   return GalleryCover(
                     item: item,
                     isFocused: _selectedPhotoId == item.id,
-                    onPressed: () => widget.onSelected?.call(item),
+                    onPressed: () => widget.onSelected?.call(item, index),
                     onFocused: () {
                       setState(() {
                         _selectedPhotoId = item.id;
@@ -119,7 +119,7 @@ class _GalleryPageState extends State<GalleryPage> {
                   return GalleryCover(
                     item: item,
                     isFocused: _selectedPhotoId == item.id,
-                    onPressed: () => widget.onSelected?.call(item),
+                    onPressed: () => widget.onSelected?.call(item, index),
                     onFocused: () {
                       setState(() {
                         _selectedPhotoId = item.id;
